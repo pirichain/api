@@ -1,0 +1,34 @@
+{
+  "name": "@piriblockchain/core",
+  "version": "1.12.9",
+  "dependencies": {
+    "apisauce": "^2.1.5",
+    "base58check": "^2.0.0",
+    "bip39": "^3.1.0",
+    "elliptic": "^6.5.4",
+    "mongo-sanitize": "^1.1.0",
+    "ripemd160": "^2.0.2",
+    "sha256": "^0.2.0"
+  },
+  "main": "index.js",
+  "directories": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Pirichain Technology <support@pirichain.com> (https://github.com/pirichain)",
+  "license": "BSD-3-Clause",
+  "description": "Pirichain API package contains base commands for common usage.",
+  "homepage": "https://github.com/pirichain",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pirichain/api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pirichain/api/issues",
+    "email": "support@pirichain.com"
+  },
+  "maintainers": [
+    "pirichain"
+  ]
+}
