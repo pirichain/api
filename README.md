@@ -1,6 +1,6 @@
-<div style="display: flex; align-items: center; justify-content: center; column-gap: 40px; padding-top: 20px; padding-bottom: 5px;">
-<img src="https://static.pirichain.com/logo/transparent/128">
-<img src="https://www.gitbook.com/cdn-cgi/image/width=64,dpr=2,height=64,fit=contain,format=auto/https%3A%2F%2F3268399553-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FHQI4CotKdPSfFVAkQ7xr%252Ficon%252Fn5c0lu7a9FQq9CHWNlpD%252Fpiri-api-512.png%3Falt%3Dmedia%26token%3Df7a1b6a5-bb6d-483f-8f39-77896de4881e">
+<div style="text-align: center">
+<img src="https://static.pirichain.com/logo/transparent/128" alt="pirichain logo">
+<img src="https://www.gitbook.com/cdn-cgi/image/width=64,dpr=2,height=64,fit=contain,format=auto/https%3A%2F%2F3268399553-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FHQI4CotKdPSfFVAkQ7xr%252Ficon%252Fn5c0lu7a9FQq9CHWNlpD%252Fpiri-api-512.png%3Falt%3Dmedia%26token%3Df7a1b6a5-bb6d-483f-8f39-77896de4881e" alt="pirichain api logo">
 </div>
 
 # Pirichain API Package
@@ -30,7 +30,7 @@ It is recommended to use modular import for using the package.
 ```
 import pirichain from '@piriblockchain/core';
 
-const {} = new pirichain({
+const {Wallet, Transaction, ...} = new pirichain({
     isMainNet: true, //this is default but you can use false for testnet
     testNetServer: 'https://testnet.pirichain.com', //this is default, but you can define your testnet endpoint which you build for yourself
     mainNetServer: 'https://core.pirichain.com' //this is default, and you have to leave this as a mainnet endpoint which provied by pirichain community.
