@@ -1,13 +1,41 @@
-const {getBlock} = require('./getBlock');
-const {getBlocks} = require('./getBlocks');
-const {getBlocksDesc} = require('./getBlocksDesc');
-const {getOnlyBlocks} = require('./getOnlyBlocks');
-const {getLastBlocks} = require('./getLastBlocks');
+class Block {
+    constructor(client) {
+        this.client = client
+    }
+    getBlock(blockNumber){
+        return this.client.post("/getBlock", {
+            "blockNumber": blockNumber
+        });
+    }
 
-module.exports = {
-    getBlock: getBlock,
-    getBlocks: getBlocks,
-    getBlocksDesc: getBlocksDesc,
-    getOnlyBlocks: getOnlyBlocks,
-    getLastBlocks: getLastBlocks
+    getBlocks(skip, limit){
+        return this.client.post("/getBlocks", {
+            "skip": skip,
+            "limit": limit
+        });
+    }
+
+    getBlocksDesc(skip, limit){
+        return this.client.post("/getBlocksDesc", {
+            "skip": skip,
+            "limit": limit
+        });
+    }
+
+    getOnlyBlocks(skip, limit){
+        return this.client.post("/getOnlyBlocks", {
+            "skip": skip,
+            "limit": limit
+        });
+    }
+
+    getLastBlocks(limit){
+        return this.client.post("/getLastBlocks", {
+            "limit": limit
+        });
+    }
+
 }
+
+
+module.exports = Block;

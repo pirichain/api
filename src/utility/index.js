@@ -1,8 +1,23 @@
-const {isValidAddress} = require('./isValidAddress');
-const {search} = require('./search');
-const {verifyAddress} = require("./verifyAddress");
-module.exports = {
-    isValidAddress: isValidAddress,
-    search: search,
-    verifyAddress: verifyAddress
+class Utility {
+    constructor(client) {
+        this.client = client
+    }
+    isValidAddress(address){
+        return this.client.post("/isValidAddress", {
+            'address': address
+        });
+    }
+    search(value){
+        return this.client.post("/search", {
+            'value': value
+        });
+    }
+    verifyAddress(address){
+        return this.client.post("/verifyAddress", {
+            'address': address
+        });
+    }
+
 }
+
+module.exports = Utility;

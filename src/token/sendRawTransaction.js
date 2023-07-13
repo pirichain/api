@@ -1,4 +1,3 @@
-const {client} = require('../../config/client');
 const EC = require('elliptic').ec;
 const sha = require('sha256');
 
@@ -53,7 +52,7 @@ function prepareSendTokenWithSignature(from, toAddress, amount, assetID, globTim
 }
 
 
-module.exports.sendRawTransaction = (address, privateKey, to, amount, assetID = -1) => {
+module.exports.sendRawTransaction = (client, address, privateKey, to, amount, assetID = -1) => {
     let timeStamp = new Date().getTime();
     let message_ = prepareSendTokenWithSignature(
         address,

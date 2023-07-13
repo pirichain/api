@@ -1,11 +1,26 @@
-const {getCirculation} = require('./getCirculation');
-const {getDetailStats} = require('./getDetailStats');
-const {getRichList} = require('./getRichList');
-const {getStats} = require('./getStats');
+class Stats {
+    constructor(client) {
+        this.client = client;
+    }
+    getCirculation(){
+        return this.client.post("/getCirculation");
+    }
+    getDetailStats(assetID = null){
+        return this.client.post("/getDetailStats", {
+            "assetID": assetID
+        });
+    }
+    getRichList(assetID, limit, skip){
+        return this.client.post("/getRichList", {
+            "assetID": assetID,
+            "limit": limit,
+            "skip": skip
+        });
+    }
+    getStats(){
+        return this.client.post("/getStats");
+    }
 
-module.exports = {
-    getCirculation: getCirculation,
-    getDetailStats: getDetailStats,
-    getRichList: getRichList,
-    getStats: getStats
 }
+
+module.exports = Stats

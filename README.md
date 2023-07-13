@@ -15,20 +15,20 @@ This repo is created for base API call and returns with json format. Some functi
 ---
 
 You can access the npm library prepared for this repository at:
-https://www.npmjs.com/package/@piriblockchain/core.
+https://www.npmjs.com/package/@pirichain/core
 
 ## Installation
 
 You can install it using your preferred package manager or with npm to use the Pirichain API.
 ```
-npm install @piriblockchain/core
+npm install @pirichain/core
 ```
 
 ## Getting Started
 It is recommended to use modular import for using the package.
 
 ```
-import pirichain from '@piriblockchain/core';
+import pirichain from '@pirichain/core';
 
 const {Wallet, Transaction, ...} = new pirichain({
     isMainNet: true, //this is default but you can use false for testnet
