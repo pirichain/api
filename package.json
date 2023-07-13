@@ -1,13 +1,10 @@
 {
   "name": "@pirichain/core",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "dependencies": {
     "apisauce": "^2.1.5",
-    "base58check": "^2.0.0",
-    "bip39": "^3.1.0",
     "elliptic": "^6.5.4",
     "mongo-sanitize": "^1.1.0",
-    "ripemd160": "^2.0.2",
     "sha256": "^0.2.0"
   },
   "main": "index.js",
