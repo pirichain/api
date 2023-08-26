@@ -38,7 +38,7 @@ class Wallet {
     //TO-DO: update with crypto browser conf.
     // rescuePrivateKey = async (words, language = 'english') => rescuePrivateKey(words, language)
     rescuePrivateKey(words, language = 'english'){
-        return this.client.post("/getMnemonic", {
+        return this.client.post("/rescuePrivateKey", {
             words: words,
             language: language
         })

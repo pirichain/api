@@ -54,6 +54,15 @@ class Data {
         });
     }
 
+    pushDataListV1(address, privateKey, to, customData) {
+        return this.client.post("/pushData", {
+            "address": address,
+            "privateKey": privateKey,
+            "to": to,
+            "customData": customData
+        });
+    }
+
 }
 
 module.exports = Data
