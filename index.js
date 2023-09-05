@@ -6,6 +6,7 @@ const Block = require('./src/block');
 const Data = require('./src/data');
 const Utility = require('./src/utility');
 const Delegation = require('./src/delegation');
+const BuyPiri = require('./src/buypiri');
 const Stats = require('./src/stats');
 const Scenario = require('./src/scenario');
 
@@ -26,6 +27,7 @@ class pirichainAPI {
         this.Data = new Data(this.client);
         this.Utility = new Utility(this.client);
         this.Delegation = new Delegation(this.client);
+        this.BuyPiri = new BuyPiri(this.client);
         this.Stats = new Stats(this.client);
         this.Scenario = new Scenario(this.client);
     }
