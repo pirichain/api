@@ -1,10 +1,13 @@
 {
   "name": "@pirichain/core",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "dependencies": {
     "apisauce": "^2.1.5",
+    "base58check": "^2.0.0",
+    "bip39": "^3.1.0",
     "elliptic": "^6.5.4",
     "mongo-sanitize": "^1.1.0",
+    "ripemd160": "^2.0.2",
     "sha256": "^0.2.0"
   },
   "main": "index.js",
@@ -13,7 +16,20 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "pirichain", "piri", "blockchain", "dPoS", "api", "wallet", "transactions", "blocks", "pirichain-smart-scenario", "custom-data", "elliptic-curve", "web3", "layer1-to-layer2", "commercial-blockchain"
+    "pirichain",
+    "piri",
+    "blockchain",
+    "dPoS",
+    "api",
+    "wallet",
+    "transactions",
+    "blocks",
+    "pirichain-smart-scenario",
+    "custom-data",
+    "elliptic-curve",
+    "web3",
+    "layer1-to-layer2",
+    "commercial-blockchain"
   ],
   "author": "Pirichain Technology <support@pirichain.com> (https://github.com/pirichain)",
   "license": "BSD-3-Clause",
