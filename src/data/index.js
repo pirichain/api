@@ -3,7 +3,7 @@ class Data {
         this.client = client
     }
 
-    decrypt(customID, privateKey, receiptPub) {
+    decrypt(customID, privateKey, receiptPub = null) {
         return this.client.post("/decrypt", {
             'customID': customID,
             'privateKey': privateKey,
@@ -11,22 +11,14 @@ class Data {
         });
     }
 
-    getAddressListByAsset(assetID, start, limit) {
-        return this.client.post("/getAddressListByAsset", {
-            "assetID": assetID,
-            "start": start,
-            "limit": limit
-        });
-    }
-
-    listData(limit, skip) {
+    listData(limit, skip = 0) {
         return this.client.post("/listData", {
             "limit": limit,
             "skip": skip
         });
     }
 
-    listDataByAddress(address, limit, skip) {
+    listDataByAddress(address, limit, skip = 0) {
         return this.client.post("/listDataByAddress", {
             "address": address,
             "limit": limit,
@@ -44,7 +36,8 @@ class Data {
         });
     }
 
-    pushDataList(address, privateKey, to, customData, indPubKey) {
+    // TODO: This method will combine with other pushData Methods.
+    pushDataList(address, privateKey, to, customData, indPubKey = null) {
         return this.client.post("/pushData", {
             "address": address,
             "privateKey": privateKey,

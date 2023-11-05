@@ -55,17 +55,20 @@ class Token {
             }
         })
     }
+
     getToken(assetID) {
         return this.client.post("/getToken", {
             "assetID": assetID
         })
     }
+
     listTokens(skip, limit) {
         return this.client.post("/listTokens", {
             "skip": skip,
             "limit": limit
         })
     }
+
     sendToken(address, privateKey, to, amount, assetID) {
         return this.client.post("/sendToken", {
             "address": address,
@@ -75,8 +78,15 @@ class Token {
             "assetID": assetID
         })
     }
-    sendRawTransaction(address, privateKey, to, amount, assetID = -1){
+
+    sendRawTransaction(address, privateKey, to, amount, assetID = -1) {
         return sendRawTransaction(this.client, address, privateKey, to, amount, assetID)
+    }
+
+    givemePiri(address) {
+        return this.client.post("/givemePiri", {
+            "address": address
+        });
     }
 }
 

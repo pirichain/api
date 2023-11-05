@@ -1,11 +1,14 @@
-const EC = require('elliptic').ec;
-const ec = new EC('secp256k1');
-const base58check = require('base58check')
-const RIPEMD160 = require('ripemd160');
-const sha256 = require('sha256');
-const bip39 = require('bip39');
+import { ec as EllipticEC } from 'elliptic';
+// @ts-ignore
+import base58check from 'base58check';
+import RIPEMD160  from 'ripemd160';
+// @ts-ignore
+import sha256 from 'sha256';
+import bip39 from 'bip39';
 
-module.exports.createNewAddress = async function () {
+const ec = new EllipticEC('secp256k1');
+
+export async function createNewAddress() {
     const key = ec.genKeyPair();
     const prefix = '83';
     let publicKey = key.getPublic('hex');
@@ -21,5 +24,5 @@ module.exports.createNewAddress = async function () {
     const b58 = base58check.encode(resultStr, prefix);
     bip39.setDefaultWordlist('english');
     const words = bip39.entropyToMnemonic(privateKey);
-    return {data: {pri: privateKey, pub: 'PR' + b58, words: words, publicKey: _publicKey}};
-};
+    return { data: { pri: privateKey, pub: 'PR' + b58, words, publicKey: _publicKey } };
+}

@@ -9,14 +9,15 @@ class Scenario {
         });
     }
 
-    createScenario(address, privateKey, scenarioText, name, description, tags) {
+    createScenario(address, privateKey, scenarioText, name, description, tags, executeOnlyByMe = false) {
         return this.client.post("/createScenario", {
             "address": address,
             "privateKey": privateKey,
             "scenarioText": scenarioText,
             "name": name,
             "description": description,
-            "tags": tags
+            "tags": tags,
+            "executeOnlyByMe": executeOnlyByMe
 
         });
     }
@@ -36,24 +37,26 @@ class Scenario {
         });
     }
 
-    listScenarios(skip, limit) {
+    listScenarios(skip = 0, limit = 10) {
         return this.client.post("/listScenarios", {
             "skip": skip,
             "limit": limit
         });
     }
 
-    executeScenario(scenarioAddress, address, privateKey, method, params) {
+    executeScenario(scenarioAddress, address, privateKey, method, params = null, amount = 0, assetID = null) {
         return this.client.post("/executeScenario", {
             "scenarioAddress": scenarioAddress,
             "address": address,
             "privateKey": privateKey,
             "method": method,
-            "params": params
+            "params": params,
+            "amount": amount,
+            "assetID": assetID
         });
     }
 
-    previewScenario(scenarioText, address, privateKey, method, params) {
+    previewScenario(scenarioText, address, privateKey, method, params = null) {
         return this.client.post("/previewScenario", {
             "scenarioText": scenarioText,
             "address": address,

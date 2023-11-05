@@ -11,12 +11,6 @@ class Utility {
             'value': value
         });
     }
-    verifyAddress(address){
-        return this.client.post("/verifyAddress", {
-            'address': address
-        });
-    }
-
 }
 
 module.exports = Utility;

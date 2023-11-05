@@ -1,9 +1,13 @@
+import {ApisauceInstance} from "apisauce";
+
 class Transaction {
-    constructor(client) {
-        this.client = client
+    private client: ApisauceInstance;
+
+    constructor(client: ApisauceInstance) {
+        this.client = client;
     }
 
-    getTransaction(tx) {
+    getTransaction(tx: string) {
         return this.client.post("/getTransaction", {
             "tx": tx
         });
@@ -13,7 +17,7 @@ class Transaction {
         return this.client.post("/listPoolTransactions");
     }
 
-    listTransactions(skip, limit) {
+    listTransactions(skip: number, limit: number) {
         return this.client.post("/listTransactions", {
             "skip": skip,
             "limit": limit
@@ -21,7 +25,7 @@ class Transaction {
     }
 
     // TODO: limit and address parameter will switch and limit default value will be 50
-    listTransactionsByAddr(skip, limit, address) {
+    listTransactionsByAddr(skip: number, address: string, limit: number = 50) {
         return this.client.post("/listTransactionsByAddr", {
             "skip": skip,
             "limit": limit,
@@ -29,7 +33,7 @@ class Transaction {
         });
     }
 
-    listTransactionsByAssetID(skip, limit, assetID, desc = false) {
+    listTransactionsByAssetID(skip: number, assetID: string, limit: number, desc: boolean = false) {
         return this.client.post("/listTransactionsByAssetID", {
             "skip": skip,
             "limit": limit,
@@ -37,12 +41,12 @@ class Transaction {
             "desc": desc.toString()
         });
     }
-    getPoolTransaction(tx){
+
+    getPoolTransaction(tx: string) {
         return this.client.post("/getPoolTransaction", {
             "tx": tx
         });
     }
-
 }
 
-module.exports = Transaction;
+export default Transaction;
