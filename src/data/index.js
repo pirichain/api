@@ -26,6 +26,15 @@ class Data {
         });
     }
 
+    listDataByAddresses(from, to, limit, skip = 0) {
+        return this.client.post("/listDataByAddresses", {
+            "from": from,
+            "to": to,
+            "limit": limit,
+            "skip": skip
+        });
+    }
+
     pushData(address, privateKey, to, indPubKey, key, value, enc) {
         return this.client.post("/pushData", {
             "address": address,

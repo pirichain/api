@@ -30,6 +30,15 @@ class Data {
         });
     }
 
+    listDataByAddresses(from: string, to: string, limit: number, skip: number = 0) {
+        return this.client.post("/listDataByAddresses", {
+            from,
+            to,
+            limit,
+            skip
+        });
+    }
+
     pushData(
         address: string,
         privateKey: string,
