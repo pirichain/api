@@ -53,6 +53,7 @@ export function sendRawTransaction(client: ApisauceInstance, address: string, pr
         assetID,
         timeStamp,
     );
+
     const key = ec.keyFromPrivate(privateKey);
     // @ts-ignore
     const publicKey = key.getPublic().encode('hex');
