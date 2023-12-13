@@ -7,7 +7,7 @@ class Wallet {
         this.client = client;
     }
 
-    createNewAddress = async () => createNewAddress();
+    createNewAddress = async () => await createNewAddress();
 
     getBalance(address, assetID) {
         return this.client.post("/getBalance", {

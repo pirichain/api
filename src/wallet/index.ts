@@ -10,7 +10,7 @@ class Wallet {
     }
 
     async createNewAddress() {
-        return createNewAddress();
+        return await createNewAddress();
     }
 
     getBalance(address: string, assetID: number) {
