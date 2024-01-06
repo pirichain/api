@@ -1,4 +1,5 @@
 class Delegation {
+    client;
     constructor(client) {
         this.client = client
     }

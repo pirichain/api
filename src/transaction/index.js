@@ -1,4 +1,5 @@
 class Transaction {
+    client;
     constructor(client) {
         this.client = client
     }

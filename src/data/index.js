@@ -1,4 +1,5 @@
 class Data {
+    client;
     constructor(client) {
         this.client = client
     }

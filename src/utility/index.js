@@ -1,6 +1,7 @@
 const {isValidAddress} = require("./isValidAddress");
 
 class Utility {
+    client;
     constructor(client) {
         this.client = client
     }

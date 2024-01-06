@@ -1,4 +1,5 @@
 class Scenario {
+    client;
     constructor(client) {
         this.client = client
     }

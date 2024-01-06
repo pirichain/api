@@ -1,6 +1,5 @@
 const EC = require('elliptic').ec;
 const sha = require('sha256');
-const Token = require("./index");
 
 const ec = new EC('secp256k1');
 
@@ -56,12 +55,8 @@ function isMainNet(client) {
 }
 
 
-
-
 module.exports.sendRawTransaction = async (client, address, privateKey, to, amount, assetID = -1, estimatedFee = 0.1) => {
     let timeStamp = new Date().getTime();
-    const feeResponse = await client.post("/getEstimatedFee");
-    const estimatedFee = parseFloat(feeResponse.estimatedBandWidthFee);
     let message_ = prepareSendTokenWithSignature(
         client,
         address,

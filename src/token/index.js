@@ -79,8 +79,8 @@ class Token {
         })
     }
 
-    sendRawTransaction(address, privateKey, to, amount, assetID = -1) {
-        return sendRawTransaction(this.client, address, privateKey, to, amount, assetID)
+    sendRawTransaction(address, privateKey, to, amount, assetID = -1, estimatedFee = 0.1) {
+        return sendRawTransaction(this.client, address, privateKey, to, amount, assetID, estimatedFee)
     }
 
     givemePiri(address) {

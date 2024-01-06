@@ -1,4 +1,5 @@
 class Stats {
+    client;
     constructor(client) {
         this.client = client;
     }

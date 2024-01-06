@@ -3,6 +3,7 @@ const {getMnemonic} = require("./getMnemonic");
 const {rescuePrivateKey} = require("./rescuePrivateKey");
 
 class Wallet {
+    client;
     constructor(client) {
         this.client = client;
     }
