@@ -88,6 +88,10 @@ class Token {
             "address": address
         });
     }
+
+    getEstimatedFee() {
+        return this.client.post("/getEstimatedFee")
+    }
 }
 
 

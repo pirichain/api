@@ -1,5 +1,6 @@
 const EC = require('elliptic').ec;
 const sha = require('sha256');
+const Token = require("./index");
 
 const ec = new EC('secp256k1');
 
@@ -29,7 +30,7 @@ function sortObjectProperty(o) {
     return sorted;
 }
 
-function prepareSendTokenWithSignature(client, from, toAddress, amount, assetID, globTime) {
+function prepareSendTokenWithSignature(client, from, toAddress, amount, assetID, globTime, fee = 0.1) {
     const mainnetData = {
         from: from,
         to: toAddress,
@@ -40,18 +41,27 @@ function prepareSendTokenWithSignature(client, from, toAddress, amount, assetID,
     };
     const testnetData = {
         ...mainnetData,
+        fee: fee,
         metaData: {}
     }
 
-    let data = client.getBaseURL().indexOf('https://core.pirichain.com') >= 0 ? mainnetData : testnetData;
+    let data = isMainNet(client) ? mainnetData : testnetData;
 
     data = sortObjectProperty(data);
     return JSON.stringify(data);
 }
 
+function isMainNet(client) {
+    return client.getBaseURL().indexOf('https://core.pirichain.com') >= 0
+}
 
-module.exports.sendRawTransaction = (client, address, privateKey, to, amount, assetID = -1) => {
+
+
+
+module.exports.sendRawTransaction = async (client, address, privateKey, to, amount, assetID = -1, estimatedFee = 0.1) => {
     let timeStamp = new Date().getTime();
+    const feeResponse = await client.post("/getEstimatedFee");
+    const estimatedFee = parseFloat(feeResponse.estimatedBandWidthFee);
     let message_ = prepareSendTokenWithSignature(
         client,
         address,
@@ -59,6 +69,7 @@ module.exports.sendRawTransaction = (client, address, privateKey, to, amount, as
         amount,
         assetID,
         timeStamp,
+        estimatedFee
     );
     const key = ec.keyFromPrivate(privateKey);
     const publicKey = key.getPublic().encode('hex');
@@ -67,7 +78,7 @@ module.exports.sendRawTransaction = (client, address, privateKey, to, amount, as
     const resultSign = key.sign(message).toDER();
     const signatureData = toHexString(resultSign);
 
-    return client.post(endpoint, {
+    let params = {
         "publicKey": publicKey,
         "address": address,
         "to": to,
@@ -75,5 +86,10 @@ module.exports.sendRawTransaction = (client, address, privateKey, to, amount, as
         "assetID": assetID,
         "signaturedData": signatureData,
         "timeStamp": timeStamp
-    })
+    }
+
+    if (!isMainNet(client))
+        params.fee = estimatedFee
+
+    return client.post(endpoint, params)
 };

@@ -1,6 +1,4 @@
 import {ApisauceInstance} from "apisauce";
-// @ts-ignore
-import FormData from 'form-data';
 import {sendRawTransaction} from "./sendRawTransaction";
 
 class Token {
@@ -39,7 +37,7 @@ class Token {
         form.append('tokenName', tokenName);
         form.append('tokenSymbol', tokenSymbol);
         form.append('totalSupply', totalSupply.toString());
-        form.append('logo', logo, { filename: 'logo.png' });
+        form.append('logo', logo, "logo.png");
         form.append('decimals', decimals.toString());
         form.append('description', description);
         form.append('webSite', webSite);
