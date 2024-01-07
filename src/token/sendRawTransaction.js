@@ -40,7 +40,7 @@ function prepareSendTokenWithSignature(client, from, toAddress, amount, assetID,
     };
     const testnetData = {
         ...mainnetData,
-        fee: fee,
+        fee: parseFloat(fee),
         metaData: {}
     }
 
@@ -56,7 +56,7 @@ function isMainNet(client) {
 
 
 module.exports.sendRawTransaction = async (client, address, privateKey, to, amount, assetID = -1, estimatedFee = 0.1) => {
-    let timeStamp = new Date().getTime();
+    let timeStamp = Date.now();
     let message_ = prepareSendTokenWithSignature(
         client,
         address,
