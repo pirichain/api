@@ -83,8 +83,7 @@ module.exports.sendRawTransaction = async (client, address, privateKey, to, amou
         "timeStamp": timeStamp
     }
 
-    if (!isMainNet(client))
-        params.fee = estimatedFee
+    params.fee = estimatedFee
 
     return client.post(endpoint, params)
 };
