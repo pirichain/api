@@ -30,30 +30,19 @@ function sortObjectProperty(o) {
 }
 
 function prepareSendTokenWithSignature(client, from, toAddress, amount, assetID, globTime, fee = 0.1) {
-    const mainnetData = {
+    let data = {
         from: from,
         to: toAddress,
         amount: amount,
         assetID: assetID,
-        fee: 0.1,
-        timeStamp: globTime
-    };
-    const testnetData = {
-        ...mainnetData,
+        timeStamp: globTime,
         fee: parseFloat(fee),
         metaData: {}
-    }
-
-    let data = isMainNet(client) ? mainnetData : testnetData;
+    };
 
     data = sortObjectProperty(data);
     return JSON.stringify(data);
 }
-
-function isMainNet(client) {
-    return client.getBaseURL().indexOf('https://core.pirichain.com') >= 0
-}
-
 
 module.exports.sendRawTransaction = async (client, address, privateKey, to, amount, assetID = -1, estimatedFee = 0.1) => {
     let timeStamp = Date.now();
@@ -80,10 +69,9 @@ module.exports.sendRawTransaction = async (client, address, privateKey, to, amou
         "amount": amount,
         "assetID": assetID,
         "signaturedData": signatureData,
-        "timeStamp": timeStamp
+        "timeStamp": timeStamp,
+        "fee": estimatedFee
     }
-
-    params.fee = estimatedFee
 
     return client.post(endpoint, params)
 };
