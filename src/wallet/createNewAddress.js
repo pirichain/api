@@ -5,7 +5,7 @@ const RIPEMD160 = require('ripemd160');
 const sha256 = require('sha256');
 const bip39 = require('bip39');
 
-module.exports.createNewAddress = async function () {
+module.exports.createNewAddress = async function (language) {
     const key = ec.genKeyPair();
     const prefix = '83';
     let publicKey = key.getPublic('hex');
@@ -19,7 +19,7 @@ module.exports.createNewAddress = async function () {
     const firstByte = hashLast.substr(0, 8);
     const resultStr = secondHash + firstByte;
     const b58 = base58check.encode(resultStr, prefix);
-    bip39.setDefaultWordlist('english');
+    bip39.setDefaultWordlist(language);
     const words = bip39.entropyToMnemonic(privateKey);
     return {data: {pri: privateKey, pub: 'PR' + b58, words: words, publicKey: _publicKey}};
 };

@@ -14,7 +14,7 @@ class Transaction {
         return this.client.post("/listPoolTransactions");
     }
 
-    listTransactions(skip, limit) {
+    listTransactions(skip= 0, limit = 50) {
         return this.client.post("/listTransactions", {
             "skip": skip,
             "limit": limit

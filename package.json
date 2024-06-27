@@ -1,6 +1,6 @@
 {
   "name": "@pirichain/core",
-  "version": "2.1.11",
+  "version": "2.2.0",
   "dependencies": {
     "apisauce": "^2.1.5",
     "base58check": "^2.0.0",

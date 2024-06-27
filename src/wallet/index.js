@@ -8,9 +8,9 @@ class Wallet {
         this.client = client;
     }
 
-    createNewAddress = async () => await createNewAddress();
+    createNewAddress = async (language = 'english') => await createNewAddress(language);
 
-    getBalance(address, assetID) {
+    getBalance(address, assetID = -1) {
         return this.client.post("/getBalance", {
             'address': address,
             'assetID': assetID
@@ -27,13 +27,11 @@ class Wallet {
     rescuePrivateKey = async (words, language = 'english') => rescuePrivateKey(words, language)
 
     convertToCommercialWallet(address, privateKey, alias) {
-        if (!this.client.headers.isMainNet)
-            return this.client.post('/convertToCommercialWallet', {
-                'address': address,
-                'privateKey': privateKey,
-                'alias': alias
-            })
-        else return new Promise(resolve => resolve({error: 1, message: 'This method can be used in the Pirichain TestNet Environment!'}))
+        return this.client.post('/convertToCommercialWallet', {
+            'address': address,
+            'privateKey': privateKey,
+            'alias': alias
+        })
     }
 }
 

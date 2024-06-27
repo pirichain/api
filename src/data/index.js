@@ -1,5 +1,8 @@
+const {pushDataRawTransaction} = require("./pushDataRawTransaction");
+
 class Data {
     client;
+
     constructor(client) {
         this.client = client
     }
@@ -46,7 +49,6 @@ class Data {
         });
     }
 
-    // TODO: This method will combine with other pushData Methods.
     pushDataList(address, privateKey, to, customData, indPubKey = null) {
         return this.client.post("/pushData", {
             "address": address,
@@ -57,6 +59,7 @@ class Data {
         });
     }
 
+
     pushDataListV1(address, privateKey, to, customData) {
         return this.client.post("/pushData", {
             "address": address,
@@ -64,6 +67,10 @@ class Data {
             "to": to,
             "customData": customData
         });
+    }
+
+    pushDataRawTransaction(address, privateKey, to, customData, receiverPubKey = null, amount = 0) {
+        return pushDataRawTransaction(this.client, address, privateKey, to, customData, receiverPubKey, amount)
     }
 
 }

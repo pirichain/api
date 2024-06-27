@@ -62,7 +62,7 @@ class Token {
         })
     }
 
-    listTokens(skip, limit) {
+    listTokens(skip= 0, limit = 10) {
         return this.client.post("/listTokens", {
             "skip": skip,
             "limit": limit

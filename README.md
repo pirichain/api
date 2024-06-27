@@ -31,9 +31,7 @@ It is recommended to use modular import for using the package.
 import pirichain from '@pirichain/core';
 
 const {Wallet, Transaction, ...} = new pirichain({
-    isMainNet: true, //this is default but you can use false for testnet
-    testNetServer: 'https://testnet.pirichain.com', //this is default, but you can define your testnet endpoint which you build for yourself
-    mainNetServer: 'https://core.pirichain.com' //this is default, and you have to leave this as a mainnet endpoint which provied by pirichain community.
+    baseURL: 'https://endpointofnetwork', //this is default, but you can define your testnet endpoint which you build for yourself
 })
 ```
 
