@@ -101,8 +101,6 @@ module.exports.pushDataRawTransaction = async (client, from, privateKey, to, cus
     pubKey = key.getPublic().encode('hex');
     let message = sha(message_);
 
-    console.log("message", message_)
-
     const resultSign = key.sign(message).toDER();
     const signatureData = toHexString(resultSign);
 
@@ -116,8 +114,6 @@ module.exports.pushDataRawTransaction = async (client, from, privateKey, to, cus
         customData: customData_,
         to: to
     };
-
-    console.log("params", params);
 
     if (receiverPubKey)
         params.indPubKey = receiverPubKey;
