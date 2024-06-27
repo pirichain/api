@@ -73,6 +73,12 @@ class Data {
         return pushDataRawTransaction(this.client, address, privateKey, to, customData, receiverPubKey, amount)
     }
 
+    getPubKey(address) {
+        return this.client.post("/getPubKey", {
+            "address": address
+        });
+    }
+
 }
 
 module.exports = Data
