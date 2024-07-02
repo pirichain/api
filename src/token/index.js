@@ -62,7 +62,7 @@ class Token {
         })
     }
 
-    listTokens(skip= 0, limit = 10) {
+    listTokens(skip = 0, limit = 10) {
         return this.client.post("/listTokens", {
             "skip": skip,
             "limit": limit
@@ -79,8 +79,23 @@ class Token {
         })
     }
 
-    sendRawTransaction(address, privateKey, to, amount, assetID = -1, estimatedFee = 0.1) {
-        return sendRawTransaction(this.client, address, privateKey, to, amount, assetID, estimatedFee)
+    sendRawTransaction(address, privateKey, to, amount, assetID = -1, estimatedFee = 1) {
+        let estimatedFee_ = estimatedFee;
+
+        const getEstimatedFeePromise = this.getEstimatedFee().then(({data}) => {
+            if (!data.error) {
+                if (parseFloat(data.estimatedBandWidthFee) > estimatedFee)
+                    estimatedFee_ = parseFloat(data.estimatedBandWidthFee)
+            }
+        }).catch(error => {
+            console.error("Error fetching estimated fee:", error);
+        });
+
+        return Promise.all([getEstimatedFeePromise])
+            .then(() => {
+                return sendRawTransaction(this.client, address, privateKey, to, amount, estimatedFee_, assetID);
+            });
+
     }
 
     givemePiri(address) {

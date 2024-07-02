@@ -29,14 +29,14 @@ function sortObjectProperty(o) {
     return sorted;
 }
 
-function prepareSendTokenWithSignature(client, from, toAddress, amount, assetID, globTime, fee = 0.1) {
+function prepareSendTokenWithSignature(client, from, toAddress, amount, assetID, globTime, fee) {
     let data = {
         from: from,
         to: toAddress,
         amount: amount,
         assetID: assetID,
         timeStamp: globTime,
-        fee: parseFloat(fee),
+        fee: fee,
         metaData: {}
     };
 
@@ -44,7 +44,7 @@ function prepareSendTokenWithSignature(client, from, toAddress, amount, assetID,
     return JSON.stringify(data);
 }
 
-module.exports.sendRawTransaction = async (client, address, privateKey, to, amount, assetID = -1, estimatedFee = 0.1) => {
+module.exports.sendRawTransaction = async (client, address, privateKey, to, amount, estimatedFee,  assetID = -1) => {
     let timeStamp = Date.now();
     let message_ = prepareSendTokenWithSignature(
         client,
