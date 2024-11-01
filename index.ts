@@ -10,7 +10,6 @@ import Stats from "./src/stats";
 import Scenario from "./src/scenario";
 
 class PirichainAPI {
-    client: ApisauceInstance;
     Wallet: Wallet;
     Token: Token;
     Transaction: Transaction;
@@ -21,17 +20,17 @@ class PirichainAPI {
     Stats: Stats;
     Scenario: Scenario;
     constructor({serverURL}: { serverURL: string }) {
-        this.client = create({baseURL: serverURL});
+        const client = create({baseURL: serverURL});
 
-        this.Wallet = new Wallet(this.client);
-        this.Token = new Token(this.client);
-        this.Transaction = new Transaction(this.client);
-        this.Block = new Block(this.client);
-        this.Data = new Data(this.client);
-        this.Utility = new Utility(this.client);
-        this.Delegation = new Delegation(this.client);
-        this.Stats = new Stats(this.client);
-        this.Scenario = new Scenario(this.client);
+        this.Wallet = new Wallet(client);
+        this.Token = new Token(client);
+        this.Transaction = new Transaction(client);
+        this.Block = new Block(client);
+        this.Data = new Data(client);
+        this.Utility = new Utility(client);
+        this.Delegation = new Delegation(client);
+        this.Stats = new Stats(client);
+        this.Scenario = new Scenario(client);
     }
 }
 

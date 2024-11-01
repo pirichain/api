@@ -15,16 +15,16 @@ const stats_1 = __importDefault(require("./src/stats"));
 const scenario_1 = __importDefault(require("./src/scenario"));
 class PirichainAPI {
     constructor({ serverURL }) {
-        this.client = (0, apisauce_1.create)({ baseURL: serverURL });
-        this.Wallet = new wallet_1.default(this.client);
-        this.Token = new token_1.default(this.client);
-        this.Transaction = new transaction_1.default(this.client);
-        this.Block = new block_1.default(this.client);
-        this.Data = new data_1.default(this.client);
-        this.Utility = new utility_1.default(this.client);
-        this.Delegation = new delegation_1.default(this.client);
-        this.Stats = new stats_1.default(this.client);
-        this.Scenario = new scenario_1.default(this.client);
+        const client = (0, apisauce_1.create)({ baseURL: serverURL });
+        this.Wallet = new wallet_1.default(client);
+        this.Token = new token_1.default(client);
+        this.Transaction = new transaction_1.default(client);
+        this.Block = new block_1.default(client);
+        this.Data = new data_1.default(client);
+        this.Utility = new utility_1.default(client);
+        this.Delegation = new delegation_1.default(client);
+        this.Stats = new stats_1.default(client);
+        this.Scenario = new scenario_1.default(client);
     }
 }
 exports.default = PirichainAPI;
