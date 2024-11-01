@@ -1,43 +1,38 @@
-import {ApisauceInstance, create} from "apisauce";
-import {IBlock} from "./src/block";
-import {IData} from "./src/data";
-import {IDelegation} from "./src/delegation";
-import {IScenario} from "./src/scenario";
-import {IStats} from "./src/stats";
-import {IToken} from "./src/token";
-import {ITransaction} from "./src/transaction";
-import {IUtility} from "./src/utility";
-import {IWallet} from "./src/wallet";
+import { ApisauceInstance, create } from "apisauce";
+import Wallet, {IWallet} from "./src/wallet";
+import Token, {IToken} from "./src/token";
+import Transaction, {ITransaction} from "./src/transaction";
+import Block, {IBlock} from "./src/block";
+import Data, {IData} from "./src/data";
+import Utility, {IUtility} from "./src/utility";
+import Delegation, {IDelegation} from "./src/delegation";
+import Stats, {IStats} from "./src/stats";
+import Scenario, {IScenario} from "./src/scenario";
 
 class PirichainAPI {
-    private readonly client: ApisauceInstance;
+    public readonly Wallet: IWallet;
+    public readonly Token: IToken;
+    public readonly Transaction: ITransaction;
+    public readonly Block: IBlock;
+    public readonly Data: IData;
+    public readonly Utility: IUtility;
+    public readonly Delegation: IDelegation;
+    public readonly Stats: IStats;
+    public readonly Scenario: IScenario;
 
-    constructor({serverURL}: { serverURL: string }) {
-        this.client = create({baseURL: serverURL});
-        return new Proxy(this, {
-            get: (target, prop: string) => {
-                if (target[prop as keyof PirichainAPI] === undefined) {
-                    try {
-                        const Module = require(`./src/${prop.toLowerCase()}`).default;
-                        target[prop as keyof PirichainAPI] = new Module(this.client);
-                    } catch (error) {
-                        throw new Error(`Module '${prop}' not found.`);
-                    }
-                }
-                return target[prop as keyof PirichainAPI];
-            },
-        });
+    constructor({ serverURL }: { serverURL: string }) {
+        const client: ApisauceInstance = create({ baseURL: serverURL });
+
+        this.Wallet = new Wallet(client);
+        this.Token = new Token(client);
+        this.Transaction = new Transaction(client);
+        this.Block = new Block(client);
+        this.Data = new Data(client);
+        this.Utility = new Utility(client);
+        this.Delegation = new Delegation(client);
+        this.Stats = new Stats(client);
+        this.Scenario = new Scenario(client);
     }
-
-    public Wallet?: IWallet;
-    public Token?: IToken;
-    public Transaction?: ITransaction;
-    public Block?: IBlock;
-    public Data?: IData;
-    public Utility?: IUtility;
-    public Delegation?: IDelegation;
-    public Stats?: IStats;
-    public Scenario?: IScenario;
 }
 
 export default PirichainAPI;

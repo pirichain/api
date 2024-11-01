@@ -1,25 +1,24 @@
-import { IBlock } from "./src/block";
-import { IData } from "./src/data";
-import { IDelegation } from "./src/delegation";
-import { IScenario } from "./src/scenario";
-import { IStats } from "./src/stats";
+import { IWallet } from "./src/wallet";
 import { IToken } from "./src/token";
 import { ITransaction } from "./src/transaction";
+import { IBlock } from "./src/block";
+import { IData } from "./src/data";
 import { IUtility } from "./src/utility";
-import { IWallet } from "./src/wallet";
+import { IDelegation } from "./src/delegation";
+import { IStats } from "./src/stats";
+import { IScenario } from "./src/scenario";
 declare class PirichainAPI {
-    private readonly client;
+    readonly Wallet: IWallet;
+    readonly Token: IToken;
+    readonly Transaction: ITransaction;
+    readonly Block: IBlock;
+    readonly Data: IData;
+    readonly Utility: IUtility;
+    readonly Delegation: IDelegation;
+    readonly Stats: IStats;
+    readonly Scenario: IScenario;
     constructor({ serverURL }: {
         serverURL: string;
     });
-    Wallet?: IWallet;
-    Token?: IToken;
-    Transaction?: ITransaction;
-    Block?: IBlock;
-    Data?: IData;
-    Utility?: IUtility;
-    Delegation?: IDelegation;
-    Stats?: IStats;
-    Scenario?: IScenario;
 }
 export default PirichainAPI;
