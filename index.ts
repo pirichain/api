@@ -1,4 +1,4 @@
-import { ApisauceInstance, create } from "apisauce";
+import {ApisauceInstance, create} from "apisauce";
 import Wallet from "./src/wallet";
 import Token from "./src/token";
 import Transaction from "./src/transaction";
@@ -8,10 +8,6 @@ import Utility from "./src/utility";
 import Delegation from "./src/delegation";
 import Stats from "./src/stats";
 import Scenario from "./src/scenario";
-
-interface PirichainAPIConfig {
-    serverURL: string;
-}
 
 class PirichainAPI {
     private readonly client: ApisauceInstance;
@@ -25,8 +21,8 @@ class PirichainAPI {
     public Stats: Stats;
     public Scenario: Scenario;
 
-    constructor({ serverURL }: PirichainAPIConfig) {
-        this.client = create({ baseURL: serverURL });
+    constructor({serverURL}: { serverURL: string }) {
+        this.client = create({baseURL: serverURL});
 
         this.Wallet = new Wallet(this.client);
         this.Token = new Token(this.client);
