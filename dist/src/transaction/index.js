@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const response_1 = require("../../config/response");
+const response_1 = require("../config/response");
 class Transaction extends response_1.FetchResponse {
     constructor(client) {
         super(client);

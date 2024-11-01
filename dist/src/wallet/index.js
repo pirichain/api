@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const createNewAddress_1 = require("./createNewAddress");
 const rescuePrivateKey_1 = require("./rescuePrivateKey");
 const getMnemonic_1 = require("./getMnemonic");
-const response_1 = require("../../config/response");
+const response_1 = require("../config/response");
 class Wallet extends response_1.FetchResponse {
     constructor(client) {
         super(client);

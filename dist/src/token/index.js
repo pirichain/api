@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const form_data_1 = __importDefault(require("form-data"));
 const sendRawTransaction_1 = require("./sendRawTransaction");
-const response_1 = require("../../config/response");
+const response_1 = require("../config/response");
 class Token extends response_1.FetchResponse {
     constructor(client) {
         super(client);

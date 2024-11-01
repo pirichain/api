@@ -11,7 +11,8 @@
     "rootDir": "./",
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "skipDefaultLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true
   },
   "include": ["./**/*.ts"],
   "exclude": [

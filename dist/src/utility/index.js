@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const isValidAddress_1 = require("./isValidAddress");
-const response_1 = require("../../config/response");
+const response_1 = require("../config/response");
 class Utility extends response_1.FetchResponse {
     constructor(client) {
         super(client);

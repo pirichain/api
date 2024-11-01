@@ -1,37 +1,43 @@
 import {ApisauceInstance, create} from "apisauce";
-import Wallet from "./src/wallet";
-import Token from "./src/token";
-import Transaction from "./src/transaction";
-import Block from "./src/block";
-import Data from "./src/data";
-import Utility from "./src/utility";
-import Delegation from "./src/delegation";
-import Stats from "./src/stats";
-import Scenario from "./src/scenario";
+import {IBlock} from "./src/block";
+import {IData} from "./src/data";
+import {IDelegation} from "./src/delegation";
+import {IScenario} from "./src/scenario";
+import {IStats} from "./src/stats";
+import {IToken} from "./src/token";
+import {ITransaction} from "./src/transaction";
+import {IUtility} from "./src/utility";
+import {IWallet} from "./src/wallet";
 
 class PirichainAPI {
-    Wallet: Wallet;
-    Token: Token;
-    Transaction: Transaction;
-    Block: Block;
-    Data: Data;
-    Utility: Utility;
-    Delegation: Delegation;
-    Stats: Stats;
-    Scenario: Scenario;
-    constructor({serverURL}: { serverURL: string }) {
-        const client = create({baseURL: serverURL});
+    private readonly client: ApisauceInstance;
 
-        this.Wallet = new Wallet(client);
-        this.Token = new Token(client);
-        this.Transaction = new Transaction(client);
-        this.Block = new Block(client);
-        this.Data = new Data(client);
-        this.Utility = new Utility(client);
-        this.Delegation = new Delegation(client);
-        this.Stats = new Stats(client);
-        this.Scenario = new Scenario(client);
+    constructor({serverURL}: { serverURL: string }) {
+        this.client = create({baseURL: serverURL});
+        return new Proxy(this, {
+            get: (target, prop: string) => {
+                if (target[prop as keyof PirichainAPI] === undefined) {
+                    try {
+                        const Module = require(`./src/${prop.toLowerCase()}`).default;
+                        target[prop as keyof PirichainAPI] = new Module(this.client);
+                    } catch (error) {
+                        throw new Error(`Module '${prop}' not found.`);
+                    }
+                }
+                return target[prop as keyof PirichainAPI];
+            },
+        });
     }
+
+    public Wallet?: IWallet;
+    public Token?: IToken;
+    public Transaction?: ITransaction;
+    public Block?: IBlock;
+    public Data?: IData;
+    public Utility?: IUtility;
+    public Delegation?: IDelegation;
+    public Stats?: IStats;
+    public Scenario?: IScenario;
 }
 
 export default PirichainAPI;

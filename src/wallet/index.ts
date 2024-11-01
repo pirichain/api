@@ -2,9 +2,18 @@ import {createNewAddress} from "./createNewAddress";
 import {rescuePrivateKey, RescuePrivateKeyResponse} from "./rescuePrivateKey";
 import {getMnemonic, MnemonicResponse} from "./getMnemonic";
 import {ApisauceInstance} from "apisauce";
-import {FetchResponse} from "../../config/response";
+import {FetchResponse} from "../config/response";
 
-class Wallet extends FetchResponse {
+interface IWallet {
+    createNewAddress(language?: string): {data: {pri: string, pub: string, words: string, publicKey: string}};
+    getBalance(address: string, assetID?: number): Promise<any>;
+    getBalanceList(address: string): Promise<any>;
+    getMnemonic(privateKey: string, language?: string): MnemonicResponse;
+    rescuePrivateKey(words: string, language?: string): RescuePrivateKeyResponse;
+    convertToCommercialWallet(address: string, privateKey: string, alias: string): Promise<any>;
+}
+
+class Wallet extends FetchResponse implements IWallet {
     constructor(client: ApisauceInstance) {
         super(client);
     }
@@ -38,3 +47,4 @@ class Wallet extends FetchResponse {
 }
 
 export default Wallet;
+export {IWallet};

@@ -1,8 +1,13 @@
 import {isValidAddress} from './isValidAddress';
 import {ApisauceInstance} from "apisauce";
-import {FetchResponse} from "../../config/response";
+import {FetchResponse} from "../config/response";
 
-class Utility extends FetchResponse {
+interface IUtility {
+    isValidAddress(address: string): boolean;
+    search(value: string): Promise<any>;
+}
+
+class Utility extends FetchResponse implements IUtility {
     constructor(client: ApisauceInstance) {
         super(client);
     }
@@ -17,3 +22,4 @@ class Utility extends FetchResponse {
 }
 
 export default Utility;
+export {IUtility};

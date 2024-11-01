@@ -8,7 +8,7 @@ import bip39 from 'bip39';
 
 const ec = new EC('secp256k1');
 
-export function createNewAddress(language: string) {
+export function createNewAddress(language: string) : {data: {pri: string, pub: string, words: string, publicKey: string}} {
     const key = ec.genKeyPair();
     const prefix = '83';
     let publicKey = key.getPublic('hex');

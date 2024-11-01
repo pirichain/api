@@ -1,7 +1,17 @@
 import {ApisauceInstance} from 'apisauce';
-import {FetchResponse} from "../../config/response";
+import {FetchResponse} from "../config/response";
 
-class Block extends FetchResponse {
+interface IBlock {
+    getBlock(blockNumber: number): Promise<any>;
+    getBlocks(skip?: number, limit?: number): Promise<any>;
+    getLastBlocksWithBlockHeight(limit?: number, blockHeight?: number): Promise<any>;
+    getBlocksWithTransactionCount(skip?: number, limit?: number): Promise<any>;
+    getBlocksDesc(skip?: number, limit?: number): Promise<any>;
+    getOnlyBlocks(skip?: number, limit?: number): Promise<any>;
+    getLastBlocks(limit?: number): Promise<any>;
+}
+
+class Block extends FetchResponse implements IBlock {
     constructor(client: ApisauceInstance) {
         super(client);
     }
@@ -55,3 +65,4 @@ class Block extends FetchResponse {
 }
 
 export default Block;
+export {IBlock}
