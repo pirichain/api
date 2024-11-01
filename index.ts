@@ -10,7 +10,7 @@ import Stats from "./src/stats";
 import Scenario from "./src/scenario";
 
 class PirichainAPI {
-    private readonly client: ApisauceInstance;
+    client: ApisauceInstance;
     Wallet: Wallet;
     Token: Token;
     Transaction: Transaction;
