@@ -11,16 +11,15 @@ import Scenario from "./src/scenario";
 
 class PirichainAPI {
     private readonly client: ApisauceInstance;
-    public Wallet: Wallet;
-    public Token: Token;
-    public Transaction: Transaction;
-    public Block: Block;
-    public Data: Data;
-    public Utility: Utility;
-    public Delegation: Delegation;
-    public Stats: Stats;
-    public Scenario: Scenario;
-
+    Wallet: Wallet;
+    Token: Token;
+    Transaction: Transaction;
+    Block: Block;
+    Data: Data;
+    Utility: Utility;
+    Delegation: Delegation;
+    Stats: Stats;
+    Scenario: Scenario;
     constructor({serverURL}: { serverURL: string }) {
         this.client = create({baseURL: serverURL});
 
