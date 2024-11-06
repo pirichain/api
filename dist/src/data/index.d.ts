@@ -1,5 +1,5 @@
-import { ApisauceInstance } from 'apisauce';
 import { FetchResponse } from "../config/response";
+import { AxiosInstance } from "axios";
 interface IData {
     decrypt(customID: string, privateKey: string, receiptPub?: string | null): Promise<any>;
     listData(limit: number, skip?: number): Promise<any>;
@@ -12,7 +12,7 @@ interface IData {
     getPubKey(address: string): Promise<any>;
 }
 declare class Data extends FetchResponse implements IData {
-    constructor(client: ApisauceInstance);
+    constructor(client: AxiosInstance);
     decrypt(customID: string, privateKey: string, receiptPub?: string | null): Promise<any>;
     listData(limit: number, skip?: number): Promise<any>;
     listDataByAddress(address: string, limit: number, skip?: number): Promise<any>;

@@ -9,7 +9,8 @@ exports.base58extracted = base58extracted;
 const elliptic_1 = __importDefault(require("elliptic"));
 const { ec: EC } = elliptic_1.default;
 const sha256_1 = __importDefault(require("sha256"));
-const base_58_1 = __importDefault(require("base-58"));
+// @ts-ignore
+const base58check_1 = __importDefault(require("base58check"));
 const ripemd160_1 = __importDefault(require("ripemd160"));
 const ec = new EC('secp256k1');
 function getPubKeyFromPrivate(pri) {
@@ -25,7 +26,7 @@ function getPubKeyFromPrivate(pri) {
 function convertToBase58(pubAddress) {
     const prefix = '83';
     const resultStr = base58extracted(pubAddress, prefix);
-    const b58 = base_58_1.default.encode(Buffer.from(resultStr, 'hex'));
+    const b58 = base58check_1.default.encode(resultStr, prefix);
     return { pub: pubAddress, base58: 'PR' + b58 };
 }
 function base58extracted(publicKey, prefix) {

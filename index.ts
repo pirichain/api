@@ -1,27 +1,27 @@
-import { ApisauceInstance, create } from "apisauce";
-import Wallet, {IWallet} from "./src/wallet";
-import Token, {IToken} from "./src/token";
-import Transaction, {ITransaction} from "./src/transaction";
-import Block, {IBlock} from "./src/block";
-import Data, {IData} from "./src/data";
-import Utility, {IUtility} from "./src/utility";
-import Delegation, {IDelegation} from "./src/delegation";
-import Stats, {IStats} from "./src/stats";
-import Scenario, {IScenario} from "./src/scenario";
+import axios, {AxiosInstance} from "axios";
+import Wallet from "./src/wallet";
+import Token from "./src/token";
+import Transaction from "./src/transaction";
+import Block from "./src/block";
+import Data from "./src/data";
+import Utility from "./src/utility";
+import Delegation from "./src/delegation";
+import Stats from "./src/stats";
+import Scenario from "./src/scenario";
 
 class PirichainAPI {
-    public readonly Wallet: IWallet;
-    public readonly Token: IToken;
-    public readonly Transaction: ITransaction;
-    public readonly Block: IBlock;
-    public readonly Data: IData;
-    public readonly Utility: IUtility;
-    public readonly Delegation: IDelegation;
-    public readonly Stats: IStats;
-    public readonly Scenario: IScenario;
+    public readonly Wallet: Wallet;
+    public readonly Token: Token;
+    public readonly Transaction: Transaction;
+    public readonly Block: Block;
+    public readonly Data: Data;
+    public readonly Utility: Utility;
+    public readonly Delegation: Delegation;
+    public readonly Stats: Stats;
+    public readonly Scenario: Scenario;
 
     constructor({ serverURL }: { serverURL: string }) {
-        const client: ApisauceInstance = create({ baseURL: serverURL });
+        const client: AxiosInstance = axios.create({ baseURL: serverURL });
 
         this.Wallet = new Wallet(client);
         this.Token = new Token(client);

@@ -1,8 +1,8 @@
-import {create, ApisauceInstance, ApisauceConfig} from 'apisauce';
+import axios, {AxiosInstance, CreateAxiosDefaults} from 'axios';
 
-function client(URL: string |undefined, ...rest: ApisauceConfig[]): ApisauceInstance {
+function client(URL: string |undefined, ...rest: CreateAxiosDefaults[]): AxiosInstance {
     const config = Object.assign({}, {baseURL: URL}, rest);
-    return create(config);
+    return axios.create(config);
 }
 
 export { client };

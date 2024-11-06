@@ -1,5 +1,5 @@
-import { ApisauceInstance } from 'apisauce';
 import { FetchResponse } from "../config/response";
+import { AxiosInstance } from "axios";
 interface IDelegation {
     checkDeputy(address: string): Promise<any>;
     freezeCoin(delegationAddress: string, delegationPrivateKey: string, deputyAddress: string, amount: number): Promise<any>;
@@ -14,7 +14,7 @@ interface IDelegation {
     getDetailsOfAddress(address: string): Promise<any>;
 }
 declare class Delegation extends FetchResponse implements IDelegation {
-    constructor(client: ApisauceInstance);
+    constructor(client: AxiosInstance);
     checkDeputy(address: string): Promise<any>;
     freezeCoin(delegationAddress: string, delegationPrivateKey: string, deputyAddress: string, amount: number): Promise<any>;
     joinAsDeputy(address: string, privateKey: string, alias?: string | null, website?: string | null): Promise<any>;

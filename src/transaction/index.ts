@@ -1,5 +1,5 @@
-import {ApisauceInstance} from "apisauce";
 import {FetchResponse} from "../config/response";
+import {AxiosInstance} from "axios";
 
 interface ITransaction {
     getTransaction(tx: string): Promise<any>;
@@ -11,7 +11,7 @@ interface ITransaction {
 }
 
 class Transaction extends FetchResponse implements ITransaction {
-    constructor(client: ApisauceInstance) {
+    constructor(client: AxiosInstance) {
         super(client);
     }
 

@@ -1,7 +1,8 @@
 import pkg from "elliptic";
 const { ec: EC } = pkg;
 import sha256 from "sha256";
-import base58 from "base-58";
+// @ts-ignore
+import base58 from "base58check";
 import RIPEMD160 from "ripemd160";
 
 const ec = new EC('secp256k1');
@@ -19,7 +20,7 @@ export function getPubKeyFromPrivate(pri: string): string | undefined {
 export function convertToBase58(pubAddress: string): { pub: string, base58: string } {
     const prefix = '83';
     const resultStr = base58extracted(pubAddress, prefix);
-    const b58 = base58.encode(Buffer.from(resultStr, 'hex'));
+    const b58 = base58.encode(resultStr, prefix);
     return { pub: pubAddress, base58: 'PR' + b58 };
 }
 

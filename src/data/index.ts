@@ -1,6 +1,6 @@
-import {ApisauceInstance} from 'apisauce';
 import {pushDataRawTransaction} from './pushDataRawTransaction';
 import {FetchResponse} from "../config/response";
+import {AxiosInstance} from "axios";
 
 interface IData {
     decrypt(customID: string, privateKey: string, receiptPub?: string | null): Promise<any>;
@@ -14,7 +14,7 @@ interface IData {
     getPubKey(address: string): Promise<any>;
 }
 class Data extends FetchResponse implements IData{
-    constructor(client: ApisauceInstance) {
+    constructor(client: AxiosInstance) {
         super(client);
     }
 

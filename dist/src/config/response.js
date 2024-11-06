@@ -14,17 +14,16 @@ class FetchResponse {
     constructor(client) {
         this.client = client;
     }
-    getResponse(endpoint, params, config) {
+    getResponse(endpoint, config) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const result = yield this.client.get(endpoint, params, config);
-                if (result.ok) {
+                const result = yield this.client.get(endpoint, config);
+                if (result.status === 200)
                     return result.data;
-                }
-                return { error: 1, message: result.problem };
+                return { error: 1, message: result.data };
             }
-            catch (e) {
-                return { error: 1, message: e };
+            catch (error) {
+                return { error: 1, message: error.message };
             }
         });
     }
@@ -32,13 +31,12 @@ class FetchResponse {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield this.client.post(endpoint, data, config);
-                if (result.ok) {
+                if (result.status === 200)
                     return result.data;
-                }
-                return { error: 1, message: result.problem };
+                return { error: 1, type: { status: result.status, statusText: result.statusText }, message: result.data };
             }
-            catch (e) {
-                return { error: 1, message: e };
+            catch (error) {
+                return { error: 1, type: { status: 0, statusText: "exception" }, message: error.message };
             }
         });
     }

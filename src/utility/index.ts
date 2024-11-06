@@ -1,6 +1,6 @@
 import {isValidAddress} from './isValidAddress';
-import {ApisauceInstance} from "apisauce";
 import {FetchResponse} from "../config/response";
+import {AxiosInstance} from "axios";
 
 interface IUtility {
     isValidAddress(address: string): boolean;
@@ -8,7 +8,7 @@ interface IUtility {
 }
 
 class Utility extends FetchResponse implements IUtility {
-    constructor(client: ApisauceInstance) {
+    constructor(client: AxiosInstance) {
         super(client);
     }
 

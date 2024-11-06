@@ -1,3 +1,3 @@
-import { ApisauceInstance, ApisauceConfig } from 'apisauce';
-declare function client(URL: string | undefined, ...rest: ApisauceConfig[]): ApisauceInstance;
+import { AxiosInstance, CreateAxiosDefaults } from 'axios';
+declare function client(URL: string | undefined, ...rest: CreateAxiosDefaults[]): AxiosInstance;
 export { client };

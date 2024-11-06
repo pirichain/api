@@ -1,7 +1,7 @@
 import { RescuePrivateKeyResponse } from "./rescuePrivateKey";
 import { MnemonicResponse } from "./getMnemonic";
-import { ApisauceInstance } from "apisauce";
 import { FetchResponse } from "../config/response";
+import { AxiosInstance } from "axios";
 interface IWallet {
     createNewAddress(language?: string): {
         data: {
@@ -18,7 +18,7 @@ interface IWallet {
     convertToCommercialWallet(address: string, privateKey: string, alias: string): Promise<any>;
 }
 declare class Wallet extends FetchResponse implements IWallet {
-    constructor(client: ApisauceInstance);
+    constructor(client: AxiosInstance);
     createNewAddress: (language?: string) => {
         data: {
             pri: string;

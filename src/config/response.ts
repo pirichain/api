@@ -1,34 +1,35 @@
-import {ApisauceInstance} from "apisauce";
-import {AxiosRequestConfig} from "axios";
+import {AxiosInstance, AxiosRequestConfig} from "axios";
 
 export class FetchResponse {
-    private client: ApisauceInstance;
+    private client: AxiosInstance;
 
-    constructor(client: ApisauceInstance) {
+    constructor(client: AxiosInstance) {
         this.client = client;
     }
 
-    async getResponse(endpoint: string, params?: any, config?: AxiosRequestConfig): Promise<any> {
+    async getResponse(endpoint: string, config?: AxiosRequestConfig): Promise<any> {
         try {
-            const result = await this.client.get(endpoint, params, config);
-            if (result.ok) {
-                return result.data;
-            }
-            return {error: 1, message: result.problem}
-        } catch (e) {
-            return {error: 1, message: e}
+            const result = await this.client.get(endpoint, config);
+
+            if (result.status === 200)
+                return result.data
+
+            return {error: 1, message: result.data}
+        } catch (error) {
+            return {error: 1, message: error.message}
         }
     }
 
     async postResponse(endpoint: string, data?: any, config?: AxiosRequestConfig): Promise<any> {
         try {
             const result = await this.client.post(endpoint, data, config);
-            if (result.ok) {
-                return result.data;
-            }
-            return {error: 1, message: result.problem}
-        } catch (e) {
-            return {error: 1, message: e}
+
+            if (result.status === 200)
+                return result.data
+
+            return {error: 1, type: {status: result.status, statusText: result.statusText}, message: result.data}
+        } catch (error) {
+            return {error: 1, type: {status: 0, statusText: "exception"}, message: error.message}
         }
     }
 }

@@ -1,5 +1,5 @@
-import { ApisauceInstance } from 'apisauce';
 import { FetchResponse } from "../config/response";
+import { AxiosInstance } from "axios";
 interface IScenario {
     getScenario(address: string): Promise<any>;
     createScenario(address: string, privateKey: string, scenarioText: string, name: string, description: string, tags: string[], executeOnlyByMe?: boolean): Promise<any>;
@@ -10,7 +10,7 @@ interface IScenario {
     previewScenario(scenarioText: string, address: string, privateKey: string, method: string, params?: any): Promise<any>;
 }
 declare class Scenario extends FetchResponse implements IScenario {
-    constructor(client: ApisauceInstance);
+    constructor(client: AxiosInstance);
     getScenario(address: string): Promise<any>;
     createScenario(address: string, privateKey: string, scenarioText: string, name: string, description: string, tags: string[], executeOnlyByMe?: boolean): Promise<any>;
     editScenario(address: string, privateKey: string, scenarioText: string, scenarioAddress: string): Promise<any>;

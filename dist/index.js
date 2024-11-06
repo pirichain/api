@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const apisauce_1 = require("apisauce");
+const axios_1 = __importDefault(require("axios"));
 const wallet_1 = __importDefault(require("./src/wallet"));
 const token_1 = __importDefault(require("./src/token"));
 const transaction_1 = __importDefault(require("./src/transaction"));
@@ -15,7 +15,7 @@ const stats_1 = __importDefault(require("./src/stats"));
 const scenario_1 = __importDefault(require("./src/scenario"));
 class PirichainAPI {
     constructor({ serverURL }) {
-        const client = (0, apisauce_1.create)({ baseURL: serverURL });
+        const client = axios_1.default.create({ baseURL: serverURL });
         this.Wallet = new wallet_1.default(client);
         this.Token = new token_1.default(client);
         this.Transaction = new transaction_1.default(client);

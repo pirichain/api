@@ -1,5 +1,5 @@
-import {ApisauceInstance} from 'apisauce';
 import {FetchResponse} from "../config/response";
+import {AxiosInstance} from "axios";
 
 interface IDelegation {
     checkDeputy(address: string): Promise<any>;
@@ -17,7 +17,7 @@ interface IDelegation {
 
 class Delegation extends FetchResponse implements IDelegation {
 
-    constructor(client: ApisauceInstance) {
+    constructor(client: AxiosInstance) {
         super(client)
     }
 

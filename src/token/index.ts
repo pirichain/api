@@ -1,7 +1,7 @@
-import {ApisauceInstance} from 'apisauce';
 import FormData from 'form-data';
 import {sendRawTransaction} from './sendRawTransaction';
 import {FetchResponse} from "../config/response";
+import {AxiosInstance} from "axios";
 
 interface IToken {
     createToken(
@@ -36,7 +36,7 @@ interface IToken {
 }
 
 class Token extends FetchResponse implements IToken {
-    constructor(client: ApisauceInstance) {
+    constructor(client: AxiosInstance) {
         super(client);
     }
 

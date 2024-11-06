@@ -1,5 +1,5 @@
-import {ApisauceInstance} from 'apisauce';
 import {FetchResponse} from "../config/response";
+import {AxiosInstance} from "axios";
 
 interface IStats {
     getCirculation(): Promise<any>;
@@ -11,7 +11,7 @@ interface IStats {
 }
 
 class Stats extends FetchResponse implements IStats {
-    constructor(client: ApisauceInstance) {
+    constructor(client: AxiosInstance) {
         super(client);
     }
 

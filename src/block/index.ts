@@ -1,5 +1,5 @@
-import {ApisauceInstance} from 'apisauce';
 import {FetchResponse} from "../config/response";
+import {AxiosInstance} from "axios";
 
 interface IBlock {
     getBlock(blockNumber: number): Promise<any>;
@@ -12,7 +12,7 @@ interface IBlock {
 }
 
 class Block extends FetchResponse implements IBlock {
-    constructor(client: ApisauceInstance) {
+    constructor(client: AxiosInstance) {
         super(client);
     }
 

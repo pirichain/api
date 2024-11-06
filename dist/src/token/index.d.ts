@@ -1,5 +1,5 @@
-import { ApisauceInstance } from 'apisauce';
 import { FetchResponse } from "../config/response";
+import { AxiosInstance } from "axios";
 interface IToken {
     createToken(creatorAddress: string, privateKey: string, tokenName: string, tokenSymbol: string, totalSupply: string, logo: any, decimals: number, description: string, webSite: string, socialMediaFacebookURL?: string, socialMediaTwitterURL?: string, socialMediaMediumURL?: string, socialMediaYoutubeURL?: string, socialMediaRedditURL?: string, socialMediaBitcoinTalkURL?: string, socialMediaInstagramURL?: string, mailAddress?: string, companyAddress?: string, sector?: string, hasAirdrop?: boolean, hasStake?: boolean): Promise<any>;
     getToken(assetID: number): Promise<any>;
@@ -10,7 +10,7 @@ interface IToken {
     getEstimatedFee(): Promise<any>;
 }
 declare class Token extends FetchResponse implements IToken {
-    constructor(client: ApisauceInstance);
+    constructor(client: AxiosInstance);
     createToken(creatorAddress: string, privateKey: string, tokenName: string, tokenSymbol: string, totalSupply: string, logo: any, decimals: number, description: string, webSite: string, socialMediaFacebookURL?: string, socialMediaTwitterURL?: string, socialMediaMediumURL?: string, socialMediaYoutubeURL?: string, socialMediaRedditURL?: string, socialMediaBitcoinTalkURL?: string, socialMediaInstagramURL?: string, mailAddress?: string, companyAddress?: string, sector?: string, hasAirdrop?: boolean, hasStake?: boolean): Promise<any>;
     getToken(assetID: number): Promise<any>;
     listTokens(skip?: number, limit?: number): Promise<any>;

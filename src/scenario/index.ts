@@ -1,5 +1,5 @@
-import {ApisauceInstance} from 'apisauce';
 import {FetchResponse} from "../config/response";
+import {AxiosInstance} from "axios";
 
 interface IScenario {
     getScenario(address: string): Promise<any>;
@@ -39,7 +39,7 @@ interface IScenario {
 }
 
 class Scenario extends FetchResponse implements IScenario {
-    constructor(client: ApisauceInstance) {
+    constructor(client: AxiosInstance) {
         super(client);
     }
 
