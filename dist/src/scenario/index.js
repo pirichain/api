@@ -72,6 +72,17 @@ class Scenario extends response_1.FetchResponse {
             });
         });
     }
+    callScenario(scenarioAddress_1, address_1, publicKey_1, method_1) {
+        return __awaiter(this, arguments, void 0, function* (scenarioAddress, address, publicKey, method, params = [""]) {
+            return yield this.postResponse("/callScenario", {
+                "scenarioAddress": scenarioAddress,
+                "address": address,
+                "publicKey": publicKey,
+                "method": method,
+                "params": params
+            });
+        });
+    }
     previewScenario(scenarioText_1, address_1, privateKey_1, method_1) {
         return __awaiter(this, arguments, void 0, function* (scenarioText, address, privateKey, method, params = null) {
             return yield this.postResponse("/previewScenario", {

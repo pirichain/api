@@ -3,6 +3,7 @@ import {AxiosInstance} from "axios";
 
 interface IScenario {
     getScenario(address: string): Promise<any>;
+
     createScenario(
         address: string,
         privateKey: string,
@@ -12,14 +13,18 @@ interface IScenario {
         tags: string[],
         executeOnlyByMe?: boolean
     ): Promise<any>;
+
     editScenario(
         address: string,
         privateKey: string,
         scenarioText: string,
         scenarioAddress: string
     ): Promise<any>;
+
     listMyScenarios(ownerAddress: string): Promise<any>;
+
     listScenarios(skip?: number, limit?: number): Promise<any>;
+
     executeScenario(
         scenarioAddress: string,
         address: string,
@@ -29,6 +34,15 @@ interface IScenario {
         amount?: number,
         assetID?: number | null
     ): Promise<any>;
+
+    callScenario(
+        scenarioAddress: string,
+        address: string,
+        publicKey: string,
+        method: string,
+        params?: any,
+    ): Promise<any>
+
     previewScenario(
         scenarioText: string,
         address: string,
@@ -114,6 +128,22 @@ class Scenario extends FetchResponse implements IScenario {
             "amount": amount,
             "assetID": assetID
         });
+    }
+
+    async callScenario(
+        scenarioAddress: string,
+        address: string,
+        publicKey: string,
+        method: string,
+        params: any = [""]
+    ): Promise<any> {
+        return await this.postResponse("/callScenario", {
+            "scenarioAddress": scenarioAddress,
+            "address": address,
+            "publicKey": publicKey,
+            "method": method,
+            "params": params
+        })
     }
 
     async previewScenario(

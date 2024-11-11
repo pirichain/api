@@ -7,6 +7,7 @@ interface IScenario {
     listMyScenarios(ownerAddress: string): Promise<any>;
     listScenarios(skip?: number, limit?: number): Promise<any>;
     executeScenario(scenarioAddress: string, address: string, privateKey: string, method: string, params?: any, amount?: number, assetID?: number | null): Promise<any>;
+    callScenario(scenarioAddress: string, address: string, publicKey: string, method: string, params?: any): Promise<any>;
     previewScenario(scenarioText: string, address: string, privateKey: string, method: string, params?: any): Promise<any>;
 }
 declare class Scenario extends FetchResponse implements IScenario {
@@ -17,6 +18,7 @@ declare class Scenario extends FetchResponse implements IScenario {
     listMyScenarios(ownerAddress: string): Promise<any>;
     listScenarios(skip?: number, limit?: number): Promise<any>;
     executeScenario(scenarioAddress: string, address: string, privateKey: string, method: string, params?: any, amount?: number, assetID?: number | null): Promise<any>;
+    callScenario(scenarioAddress: string, address: string, publicKey: string, method: string, params?: any): Promise<any>;
     previewScenario(scenarioText: string, address: string, privateKey: string, method: string, params?: any): Promise<any>;
 }
 export default Scenario;

@@ -1,6 +1,6 @@
 {
   "name": "@pirichain/core",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "dependencies": {
     "@pirichain/base58check": "^1.0.0",
     "axios": "^1.7.7",
