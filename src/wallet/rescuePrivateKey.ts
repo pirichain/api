@@ -1,7 +1,6 @@
-import sanitize from "mongo-sanitize";
-import * as bip39 from "bip39";
-import { createNewAddress } from "./createNewAddress";
-import { getPubKeyFromPrivate, convertToBase58 } from "./utility";
+import {sanitize, bip39} from '../utility/modules'
+import {createNewAddress} from "./createNewAddress";
+import {getPubKeyFromPrivate, convertToBase58} from "./utility";
 
 export interface RescuePrivateKeyResponse {
     data: {
@@ -39,9 +38,9 @@ export function rescuePrivateKey(words: string, language: string = 'english'): R
             throw new Error('Public key generation failed');
         }
         let base58 = convertToBase58(pubKey);
-        return { data: { pri: pri, base58: base58 } };
+        return {data: {pri: pri, base58: base58}};
     } catch (e) {
         const result = createNewAddress(language);
-        return { data: { pri: result.data.pri, pub: result.data.pub } };
+        return {data: {pri: result.data.pri, pub: result.data.pub}};
     }
 }

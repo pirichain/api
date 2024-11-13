@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.FetchResponse = void 0;
-class FetchResponse {
+export class FetchResponse {
     constructor(client) {
         this.client = client;
     }
@@ -28,5 +25,3 @@ class FetchResponse {
         }
     }
 }
-exports.FetchResponse = FetchResponse;
-//# sourceMappingURL=response.js.map

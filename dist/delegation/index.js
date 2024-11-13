@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Delegation = void 0;
-const response_1 = require("../config/response");
-class Delegation extends response_1.FetchResponse {
+import { FetchResponse } from "../config/response";
+export default class Delegation extends FetchResponse {
     constructor(client) {
         super(client);
     }
@@ -70,5 +67,3 @@ class Delegation extends response_1.FetchResponse {
         });
     }
 }
-exports.Delegation = Delegation;
-//# sourceMappingURL=index.js.map

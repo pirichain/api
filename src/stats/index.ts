@@ -1,8 +1,8 @@
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from "axios";
+import {AxiosInstance} from '../utility/modules';
 
 
-export class Stats extends FetchResponse {
+export default class Stats extends FetchResponse {
     constructor(client: AxiosInstance) {
         super(client);
     }

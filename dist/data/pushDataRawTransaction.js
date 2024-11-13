@@ -1,13 +1,4 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.pushDataRawTransaction = pushDataRawTransaction;
-const elliptic_1 = __importDefault(require("elliptic"));
-const sha256_1 = __importDefault(require("sha256"));
-const { ec: EC } = elliptic_1.default;
-const ec = new EC('secp256k1');
+import { ec, sha256 } from '../utility/modules';
 function toHexString(byteArray) {
     return Array.from(byteArray, byte => ('0' + (byte & 0xFF).toString(16)).slice(-2)).join('');
 }
@@ -58,7 +49,7 @@ function preparePushDataWithSignature(customData, privateKey, receiptPubKey) {
     else
         return { error: 1, data: 'Custom data must be defined!' };
 }
-function pushDataRawTransaction(from, privateKey, to, customData, receiverPubKey, amount = 0) {
+export function pushDataRawTransaction(from, privateKey, to, customData, receiverPubKey, amount = 0) {
     let pubKey = '';
     const timeStamp = new Date().getTime();
     if (!Array.isArray(customData))
@@ -83,7 +74,7 @@ function pushDataRawTransaction(from, privateKey, to, customData, receiverPubKey
         return message_;
     const key = ec.keyFromPrivate(privateKey);
     pubKey = key.getPublic().encode('hex', false);
-    const message = (0, sha256_1.default)(message_);
+    const message = sha256(message_);
     const resultSign = key.sign(message).toDER();
     const signatureData = toHexString(new Uint8Array(resultSign));
     let params = {
@@ -100,4 +91,3 @@ function pushDataRawTransaction(from, privateKey, to, customData, receiverPubKey
         params.indPubKey = receiverPubKey;
     return sortObjectProperty(params);
 }
-//# sourceMappingURL=pushDataRawTransaction.js.map

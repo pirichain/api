@@ -1,18 +1,12 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Token = void 0;
-const form_data_1 = __importDefault(require("form-data"));
-const sendRawTransaction_1 = require("./sendRawTransaction");
-const response_1 = require("../config/response");
-class Token extends response_1.FetchResponse {
+import FormData from 'form-data';
+import { sendRawTransaction } from './sendRawTransaction';
+import { FetchResponse } from "../config/response";
+export default class Token extends FetchResponse {
     constructor(client) {
         super(client);
     }
     async createToken(creatorAddress, privateKey, tokenName, tokenSymbol, totalSupply, logo, decimals, description, webSite, socialMediaFacebookURL = "", socialMediaTwitterURL = "", socialMediaMediumURL = "", socialMediaYoutubeURL = "", socialMediaRedditURL = "", socialMediaBitcoinTalkURL = "", socialMediaInstagramURL = "", mailAddress = "", companyAddress = "", sector = "", hasAirdrop = false, hasStake = false) {
-        const form = new form_data_1.default();
+        const form = new FormData();
         form.append('creatorAddress', creatorAddress);
         form.append('privateKey', privateKey);
         form.append('tokenName', tokenName);
@@ -71,7 +65,7 @@ class Token extends response_1.FetchResponse {
             console.error("Error fetching estimated fee:", error);
         });
         await Promise.all([getEstimatedFeePromise]);
-        return this.postResponse("/sendRawTransaction", (0, sendRawTransaction_1.sendRawTransaction)(address, privateKey, to, amount, estimatedFee_, assetID));
+        return this.postResponse("/sendRawTransaction", sendRawTransaction(address, privateKey, to, amount, estimatedFee_, assetID));
     }
     async givemePiri(address) {
         return this.postResponse("/givemePiri", {
@@ -82,5 +76,3 @@ class Token extends response_1.FetchResponse {
         return this.postResponse("/getEstimatedFee");
     }
 }
-exports.Token = Token;
-//# sourceMappingURL=index.js.map

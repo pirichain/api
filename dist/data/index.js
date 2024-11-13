@@ -1,9 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Data = void 0;
-const pushDataRawTransaction_1 = require("./pushDataRawTransaction");
-const response_1 = require("../config/response");
-class Data extends response_1.FetchResponse {
+import { pushDataRawTransaction } from './pushDataRawTransaction';
+import { FetchResponse } from "../config/response";
+export default class Data extends FetchResponse {
     constructor(client) {
         super(client);
     }
@@ -62,7 +59,7 @@ class Data extends response_1.FetchResponse {
         });
     }
     async pushDataRawTransaction(address, privateKey, to, customData, receiverPubKey = null, amount = 0) {
-        return this.postResponse("/pushDataRawTransaction", (0, pushDataRawTransaction_1.pushDataRawTransaction)(address, privateKey, to, customData, receiverPubKey, amount));
+        return this.postResponse("/pushDataRawTransaction", pushDataRawTransaction(address, privateKey, to, customData, receiverPubKey, amount));
     }
     async getPubKey(address) {
         return this.postResponse("/getPubKey", {
@@ -70,5 +67,3 @@ class Data extends response_1.FetchResponse {
         });
     }
 }
-exports.Data = Data;
-//# sourceMappingURL=index.js.map

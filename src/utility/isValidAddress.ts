@@ -1,5 +1,4 @@
-import base58 from '@pirichain/base58check';
-import sha256 from 'sha256';
+import {base58, sha256} from '../utility/modules'
 
 export function isValidAddress(address: string): boolean {
     try {

@@ -1,12 +1,5 @@
+import {ec, base58, bip39} from '../utility/modules';
 import {base58extracted} from "./utility";
-
-import pkg from "elliptic";
-
-const {ec: EC} = pkg;
-import base58 from "@pirichain/base58check";
-import bip39 from 'bip39';
-
-const ec = new EC('secp256k1');
 
 export function createNewAddress(language: string) : {data: {pri: string, pub: string, words: string, publicKey: string}} {
     const key = ec.genKeyPair();

@@ -1,10 +1,4 @@
-import pkg from "elliptic";
-const { ec: EC } = pkg;
-import sha256 from "sha256";
-import base58 from "@pirichain/base58check";
-import RIPEMD160 from "ripemd160";
-
-const ec = new EC('secp256k1');
+import {ec, sha256, base58, RIPEMD160} from '../utility/modules'
 
 export function getPubKeyFromPrivate(pri: string): string | undefined {
     try {

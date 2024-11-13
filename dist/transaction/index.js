@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Transaction = void 0;
-const response_1 = require("../config/response");
-class Transaction extends response_1.FetchResponse {
+import { FetchResponse } from "../config/response";
+export default class Transaction extends FetchResponse {
     constructor(client) {
         super(client);
     }
@@ -41,5 +38,3 @@ class Transaction extends response_1.FetchResponse {
         });
     }
 }
-exports.Transaction = Transaction;
-//# sourceMappingURL=index.js.map

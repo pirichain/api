@@ -2,10 +2,11 @@ import {createNewAddress} from "./createNewAddress";
 import {rescuePrivateKey, RescuePrivateKeyResponse} from "./rescuePrivateKey";
 import {getMnemonic, MnemonicResponse} from "./getMnemonic";
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from "axios";
+import {AxiosInstance} from '../utility/modules';
 
 
-export class Wallet extends FetchResponse {
+
+export default class Wallet extends FetchResponse {
     constructor(client: AxiosInstance) {
         super(client);
     }

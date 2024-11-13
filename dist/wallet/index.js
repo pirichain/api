@@ -1,17 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Wallet = void 0;
-const createNewAddress_1 = require("./createNewAddress");
-const rescuePrivateKey_1 = require("./rescuePrivateKey");
-const getMnemonic_1 = require("./getMnemonic");
-const response_1 = require("../config/response");
-class Wallet extends response_1.FetchResponse {
+import { createNewAddress } from "./createNewAddress";
+import { rescuePrivateKey } from "./rescuePrivateKey";
+import { getMnemonic } from "./getMnemonic";
+import { FetchResponse } from "../config/response";
+export default class Wallet extends FetchResponse {
     constructor(client) {
         super(client);
-        this.createNewAddress = (language = 'english') => (0, createNewAddress_1.createNewAddress)(language);
-        this.getMnemonic = (privateKey, language = 'english') => (0, getMnemonic_1.getMnemonic)(privateKey, language);
-        this.rescuePrivateKey = (words, language = 'english') => (0, rescuePrivateKey_1.rescuePrivateKey)(words, language);
     }
+    createNewAddress = (language = 'english') => createNewAddress(language);
     async getBalance(address, assetID = -1) {
         return this.postResponse("/getBalance", {
             'address': address,
@@ -23,6 +18,8 @@ class Wallet extends response_1.FetchResponse {
             "address": address
         });
     }
+    getMnemonic = (privateKey, language = 'english') => getMnemonic(privateKey, language);
+    rescuePrivateKey = (words, language = 'english') => rescuePrivateKey(words, language);
     async convertToCommercialWallet(address, privateKey, alias) {
         return this.postResponse('/convertToCommercialWallet', {
             'address': address,
@@ -31,5 +28,3 @@ class Wallet extends response_1.FetchResponse {
         });
     }
 }
-exports.Wallet = Wallet;
-//# sourceMappingURL=index.js.map

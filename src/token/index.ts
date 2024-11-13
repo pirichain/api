@@ -1,10 +1,10 @@
 import FormData from 'form-data';
 import {sendRawTransaction} from './sendRawTransaction';
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from "axios";
+import {AxiosInstance} from '../utility/modules';
 
 
-export class Token extends FetchResponse {
+export default class Token extends FetchResponse {
     constructor(client: AxiosInstance) {
         super(client);
     }

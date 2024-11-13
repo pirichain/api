@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Scenario = void 0;
-const response_1 = require("../config/response");
-class Scenario extends response_1.FetchResponse {
+import { FetchResponse } from "../config/response";
+export default class Scenario extends FetchResponse {
     constructor(client) {
         super(client);
     }
@@ -71,5 +68,3 @@ class Scenario extends response_1.FetchResponse {
         });
     }
 }
-exports.Scenario = Scenario;
-//# sourceMappingURL=index.js.map

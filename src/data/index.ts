@@ -1,8 +1,8 @@
 import {pushDataRawTransaction} from './pushDataRawTransaction';
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from "axios";
+import {AxiosInstance} from '../utility/modules';
 
-export class Data extends FetchResponse {
+export default class Data extends FetchResponse {
     constructor(client: AxiosInstance) {
         super(client);
     }
