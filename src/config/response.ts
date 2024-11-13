@@ -1,7 +1,7 @@
 import {AxiosInstance, AxiosRequestConfig} from "axios";
 
 export class FetchResponse {
-    private client: AxiosInstance;
+    private declare readonly client: AxiosInstance;
 
     constructor(client: AxiosInstance) {
         this.client = client;

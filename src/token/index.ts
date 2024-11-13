@@ -3,39 +3,8 @@ import {sendRawTransaction} from './sendRawTransaction';
 import {FetchResponse} from "../config/response";
 import {AxiosInstance} from "axios";
 
-interface IToken {
-    createToken(
-        creatorAddress: string,
-        privateKey: string,
-        tokenName: string,
-        tokenSymbol: string,
-        totalSupply: string,
-        logo: any,
-        decimals: number,
-        description: string,
-        webSite: string,
-        socialMediaFacebookURL?: string,
-        socialMediaTwitterURL?: string,
-        socialMediaMediumURL?: string,
-        socialMediaYoutubeURL?: string,
-        socialMediaRedditURL?: string,
-        socialMediaBitcoinTalkURL?: string,
-        socialMediaInstagramURL?: string,
-        mailAddress?: string,
-        companyAddress?: string,
-        sector?: string,
-        hasAirdrop?: boolean,
-        hasStake?: boolean
-    ): Promise<any>;
-    getToken(assetID: number): Promise<any>;
-    listTokens(skip?: number, limit?: number): Promise<any>;
-    sendToken(address: string, privateKey: string, to: string, amount: number, assetID: number): Promise<any>;
-    sendRawTransaction(address: string, privateKey: string, to: string, amount: number, assetID?: number, estimatedFee?: number): Promise<any>;
-    givemePiri(address: string): Promise<any>;
-    getEstimatedFee(): Promise<any>;
-}
 
-class Token extends FetchResponse implements IToken {
+export class Token extends FetchResponse {
     constructor(client: AxiosInstance) {
         super(client);
     }
@@ -86,7 +55,7 @@ class Token extends FetchResponse implements IToken {
         form.append('hasAirdrop', hasAirdrop.toString());
         form.append('hasStake', hasStake.toString());
 
-        return await this.postResponse("/createToken", form, {
+        return this.postResponse("/createToken", form, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -94,20 +63,20 @@ class Token extends FetchResponse implements IToken {
     }
 
     async getToken(assetID: number): Promise<any> {
-        return await this.postResponse("/getToken", {
+        return this.postResponse("/getToken", {
             "assetID": assetID
         });
     }
 
     async listTokens(skip: number = 0, limit: number = 10): Promise<any> {
-        return await this.postResponse("/listTokens", {
+        return this.postResponse("/listTokens", {
             "skip": skip,
             "limit": limit
         });
     }
 
     async sendToken(address: string, privateKey: string, to: string, amount: number, assetID: number): Promise<any> {
-        return await this.postResponse("/sendToken", {
+        return this.postResponse("/sendToken", {
             "address": address,
             "privateKey": privateKey,
             "to": to,
@@ -130,19 +99,16 @@ class Token extends FetchResponse implements IToken {
 
         await Promise.all([getEstimatedFeePromise]);
 
-        return await this.postResponse("/sendRawTransaction", sendRawTransaction(address, privateKey, to, amount, estimatedFee_, assetID));
+        return this.postResponse("/sendRawTransaction", sendRawTransaction(address, privateKey, to, amount, estimatedFee_, assetID));
     }
 
     async givemePiri(address: string): Promise<any> {
-        return await this.postResponse("/givemePiri", {
+        return this.postResponse("/givemePiri", {
             "address": address
         });
     }
 
     async getEstimatedFee(): Promise<any> {
-        return await this.postResponse("/getEstimatedFee");
+        return this.postResponse("/getEstimatedFee");
     }
 }
-
-export default Token;
-export {IToken};

@@ -2,24 +2,13 @@ import {pushDataRawTransaction} from './pushDataRawTransaction';
 import {FetchResponse} from "../config/response";
 import {AxiosInstance} from "axios";
 
-interface IData {
-    decrypt(customID: string, privateKey: string, receiptPub?: string | null): Promise<any>;
-    listData(limit: number, skip?: number): Promise<any>;
-    listDataByAddress(address: string, limit: number, skip?: number): Promise<any>;
-    listDataByAddresses(from: string, to: string, limit: number, skip?: number): Promise<any>;
-    pushData(address: string, privateKey: string, to: string, indPubKey: string, key: string, value: string, enc: number): Promise<any>;
-    pushDataList(address: string, privateKey: string, to: string, customData: any[], indPubKey?: string | null): Promise<any>;
-    pushDataListV1(address: string, privateKey: string, to: string, customData: any[]): Promise<any>;
-    pushDataRawTransaction(address: string, privateKey: string, to: string | null, customData: any[], receiverPubKey?: string | null, amount?: number): Promise<any>;
-    getPubKey(address: string): Promise<any>;
-}
-class Data extends FetchResponse implements IData{
+export class Data extends FetchResponse {
     constructor(client: AxiosInstance) {
         super(client);
     }
 
     async decrypt(customID: string, privateKey: string, receiptPub: string | null = null): Promise<any> {
-        return await this.postResponse("/decrypt", {
+        return this.postResponse("/decrypt", {
             'customID': customID,
             'privateKey': privateKey,
             "receiptPub": receiptPub
@@ -27,14 +16,14 @@ class Data extends FetchResponse implements IData{
     }
 
     async listData(limit: number, skip: number = 0): Promise<any> {
-        return await this.postResponse("/listData", {
+        return this.postResponse("/listData", {
             "limit": limit,
             "skip": skip
         });
     }
 
     async listDataByAddress(address: string, limit: number, skip: number = 0): Promise<any> {
-        return await this.postResponse("/listDataByAddress", {
+        return this.postResponse("/listDataByAddress", {
             "address": address,
             "limit": limit,
             "skip": skip
@@ -42,7 +31,7 @@ class Data extends FetchResponse implements IData{
     }
 
     async listDataByAddresses(from: string, to: string, limit: number, skip: number = 0): Promise<any> {
-        return await this.postResponse("/listDataByAddresses", {
+        return this.postResponse("/listDataByAddresses", {
             "from": from,
             "to": to,
             "limit": limit,
@@ -51,7 +40,7 @@ class Data extends FetchResponse implements IData{
     }
 
     async pushData(address: string, privateKey: string, to: string, indPubKey: string, key: string, value: string, enc: number): Promise<any> {
-        return await this.postResponse("/pushData", {
+        return this.postResponse("/pushData", {
             "address": address,
             "privateKey": privateKey,
             "to": to,
@@ -61,7 +50,7 @@ class Data extends FetchResponse implements IData{
     }
 
     async pushDataList(address: string, privateKey: string, to: string, customData: any[], indPubKey: string | null = null): Promise<any> {
-        return await this.postResponse("/pushData", {
+        return this.postResponse("/pushData", {
             "address": address,
             "privateKey": privateKey,
             "to": to,
@@ -71,7 +60,7 @@ class Data extends FetchResponse implements IData{
     }
 
     async pushDataListV1(address: string, privateKey: string, to: string, customData: any[]): Promise<any> {
-        return await this.postResponse("/pushData", {
+        return this.postResponse("/pushData", {
             "address": address,
             "privateKey": privateKey,
             "to": to,
@@ -80,18 +69,15 @@ class Data extends FetchResponse implements IData{
     }
 
     async pushDataRawTransaction(address: string, privateKey: string, to: string | null, customData: any[], receiverPubKey: string | null = null, amount: number = 0): Promise<any> {
-        return await this.postResponse(
+        return this.postResponse(
             "/pushDataRawTransaction",
             pushDataRawTransaction(address, privateKey, to, customData, receiverPubKey, amount)
         );
     }
 
     async getPubKey(address: string): Promise<any> {
-        return await this.postResponse("/getPubKey", {
+        return this.postResponse("/getPubKey", {
             "address": address
         });
     }
 }
-
-export default Data;
-export {IData}

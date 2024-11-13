@@ -1,0 +1,36 @@
+import axios, {AxiosInstance} from "axios";
+import {Wallet} from "./wallet";
+import {Token} from "./token";
+import {Transaction} from "./transaction";
+import {Block} from "./block";
+import {Data} from "./data";
+import {Utility} from "./utility";
+import {Delegation} from "./delegation";
+import {Stats} from "./stats";
+import {Scenario} from "./scenario";
+
+export class PirichainAPI {
+    public Wallet;
+    public Token;
+    public Transaction;
+    public Block;
+    public Data;
+    public Utility;
+    public Delegation;
+    public Stats;
+    public Scenario;
+
+    constructor({serverURL}: { serverURL: string }) {
+        const client: AxiosInstance = axios.create({baseURL: serverURL});
+
+        this.Wallet = new Wallet(client);
+        this.Token = new Token(client);
+        this.Transaction = new Transaction(client);
+        this.Block = new Block(client);
+        this.Data = new Data(client);
+        this.Utility = new Utility(client);
+        this.Delegation = new Delegation(client);
+        this.Stats = new Stats(client);
+        this.Scenario = new Scenario(client);
+    }
+}

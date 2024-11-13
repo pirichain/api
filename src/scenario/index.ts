@@ -1,64 +1,14 @@
 import {FetchResponse} from "../config/response";
 import {AxiosInstance} from "axios";
 
-interface IScenario {
-    getScenario(address: string): Promise<any>;
 
-    createScenario(
-        address: string,
-        privateKey: string,
-        scenarioText: string,
-        name: string,
-        description: string,
-        tags: string[],
-        executeOnlyByMe?: boolean
-    ): Promise<any>;
-
-    editScenario(
-        address: string,
-        privateKey: string,
-        scenarioText: string,
-        scenarioAddress: string
-    ): Promise<any>;
-
-    listMyScenarios(ownerAddress: string): Promise<any>;
-
-    listScenarios(skip?: number, limit?: number): Promise<any>;
-
-    executeScenario(
-        scenarioAddress: string,
-        address: string,
-        privateKey: string,
-        method: string,
-        params?: any,
-        amount?: number,
-        assetID?: number | null
-    ): Promise<any>;
-
-    callScenario(
-        scenarioAddress: string,
-        address: string,
-        publicKey: string,
-        method: string,
-        params?: any,
-    ): Promise<any>
-
-    previewScenario(
-        scenarioText: string,
-        address: string,
-        privateKey: string,
-        method: string,
-        params?: any
-    ): Promise<any>;
-}
-
-class Scenario extends FetchResponse implements IScenario {
+export class Scenario extends FetchResponse {
     constructor(client: AxiosInstance) {
         super(client);
     }
 
     async getScenario(address: string): Promise<any> {
-        return await this.postResponse("/getScenario", {
+        return this.postResponse("/getScenario", {
             "address": address
         });
     }
@@ -72,7 +22,7 @@ class Scenario extends FetchResponse implements IScenario {
         tags: string[],
         executeOnlyByMe: boolean = false
     ): Promise<any> {
-        return await this.postResponse("/createScenario", {
+        return this.postResponse("/createScenario", {
             "address": address,
             "privateKey": privateKey,
             "scenarioText": scenarioText,
@@ -89,7 +39,7 @@ class Scenario extends FetchResponse implements IScenario {
         scenarioText: string,
         scenarioAddress: string
     ): Promise<any> {
-        return await this.postResponse("/editScenario", {
+        return this.postResponse("/editScenario", {
             "address": address,
             "privateKey": privateKey,
             "scenarioText": scenarioText,
@@ -98,13 +48,13 @@ class Scenario extends FetchResponse implements IScenario {
     }
 
     async listMyScenarios(ownerAddress: string): Promise<any> {
-        return await this.postResponse("/listMyScenarios", {
+        return this.postResponse("/listMyScenarios", {
             "ownerAddress": ownerAddress
         });
     }
 
     async listScenarios(skip: number = 0, limit: number = 10): Promise<any> {
-        return await this.postResponse("/listScenarios", {
+        return this.postResponse("/listScenarios", {
             "skip": skip,
             "limit": limit
         });
@@ -119,7 +69,7 @@ class Scenario extends FetchResponse implements IScenario {
         amount: number = 0,
         assetID: number | null = null
     ): Promise<any> {
-        return await this.postResponse("/executeScenario", {
+        return this.postResponse("/executeScenario", {
             "scenarioAddress": scenarioAddress,
             "address": address,
             "privateKey": privateKey,
@@ -137,7 +87,7 @@ class Scenario extends FetchResponse implements IScenario {
         method: string,
         params: any = [""]
     ): Promise<any> {
-        return await this.postResponse("/callScenario", {
+        return this.postResponse("/callScenario", {
             "scenarioAddress": scenarioAddress,
             "address": address,
             "publicKey": publicKey,
@@ -153,7 +103,7 @@ class Scenario extends FetchResponse implements IScenario {
         method: string,
         params: any = null
     ): Promise<any> {
-        return await this.postResponse("/previewScenario", {
+        return this.postResponse("/previewScenario", {
             "scenarioText": scenarioText,
             "address": address,
             "privateKey": privateKey,
@@ -162,6 +112,3 @@ class Scenario extends FetchResponse implements IScenario {
         });
     }
 }
-
-export default Scenario;
-export {IScenario};

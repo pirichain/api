@@ -1,36 +1,28 @@
 import {FetchResponse} from "../config/response";
 import {AxiosInstance} from "axios";
 
-interface IStats {
-    getCirculation(): Promise<any>;
-    getTotalBurnedPiri(): Promise<any>;
-    getDetailStats(assetID?: number | null): Promise<any>;
-    getRichList(assetID: number, limit: number, skip?: number): Promise<any>;
-    getStats(): Promise<any>;
-    getAddressListByAsset(assetID: number, start: number, limit: number): Promise<any>;
-}
 
-class Stats extends FetchResponse implements IStats {
+export class Stats extends FetchResponse {
     constructor(client: AxiosInstance) {
         super(client);
     }
 
     async getCirculation(): Promise<any> {
-        return await this.postResponse("/getCirculation");
+        return this.postResponse("/getCirculation");
     }
 
     async getTotalBurnedPiri(): Promise<any> {
-        return await this.postResponse("/getTotalBurnedPiri");
+        return this.postResponse("/getTotalBurnedPiri");
     }
 
     async getDetailStats(assetID: number | null = null): Promise<any> {
-        return await this.postResponse("/getDetailStats", {
+        return this.postResponse("/getDetailStats", {
             "assetID": assetID
         });
     }
 
     async getRichList(assetID: number, limit: number, skip: number = 0): Promise<any> {
-        return await this.postResponse("/getRichList", {
+        return this.postResponse("/getRichList", {
             "assetID": assetID,
             "limit": limit,
             "skip": skip
@@ -38,17 +30,14 @@ class Stats extends FetchResponse implements IStats {
     }
 
     async getStats(): Promise<any> {
-        return await this.postResponse("/getStats");
+        return this.postResponse("/getStats");
     }
 
     async getAddressListByAsset(assetID: number, start: number, limit: number): Promise<any> {
-        return await this.postResponse("/getAddressListByAsset", {
+        return this.postResponse("/getAddressListByAsset", {
             "assetID": assetID,
             "start": start,
             "limit": limit
         });
     }
 }
-
-export default Stats;
-export {IStats};

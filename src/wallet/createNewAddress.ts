@@ -3,8 +3,7 @@ import {base58extracted} from "./utility";
 import pkg from "elliptic";
 
 const {ec: EC} = pkg;
-// @ts-ignore
-import base58 from "base58check";
+import base58 from "@pirichain/base58check";
 import bip39 from 'bip39';
 
 const ec = new EC('secp256k1');

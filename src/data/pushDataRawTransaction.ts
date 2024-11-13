@@ -1,8 +1,7 @@
 import pkg from 'elliptic';
+import sha from 'sha256';
 
 const {ec: EC} = pkg;
-import sha from 'sha256';
-import crypto from 'crypto';
 
 const ec = new EC('secp256k1');
 

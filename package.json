@@ -1,21 +1,32 @@
 {
   "name": "@pirichain/core",
-  "version": "3.2.1",
+  "version": "3.3.6",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/ems/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "/dist"
+  ],
   "dependencies": {
-    "@pirichain/base58check": "^1.0.0",
+    "@pirichain/base58check": "^1.1.1",
     "axios": "^1.7.7",
-    "base-58": "^0.0.1",
-    "base58check": "^2.0.0",
     "bip39": "^3.1.0",
+    "buffer": "^6.0.3",
     "elliptic": "^6.5.4",
     "mongo-sanitize": "^1.1.0",
     "ripemd160": "^2.0.2",
     "sha256": "^0.2.0"
   },
-  "main": "index.js",
   "directories": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc && tsc -m es6 --outDir dist/esm && tsc -m commonjs --outDir dist/cjs"
   },
   "keywords": [
     "pirichain",
