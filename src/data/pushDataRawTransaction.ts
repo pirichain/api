@@ -1,4 +1,7 @@
-import {ec, sha256} from '../utility/modules';
+import sha from 'sha256';
+import pkg from "elliptic";
+const ec = new pkg.ec("secp256k1");
+
 
 function toHexString(byteArray: Uint8Array): string {
     return Array.from(byteArray, byte => ('0' + (byte & 0xFF).toString(16)).slice(-2)).join('');
@@ -87,7 +90,7 @@ export function pushDataRawTransaction(
 
     const key = ec.keyFromPrivate(privateKey);
     pubKey = key.getPublic().encode('hex', false);
-    const message = sha256(message_ as string);
+    const message = sha(message_ as string);
 
     const resultSign = key.sign(message).toDER();
     const signatureData = toHexString(new Uint8Array(resultSign));

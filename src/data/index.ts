@@ -1,13 +1,12 @@
 import {pushDataRawTransaction} from './pushDataRawTransaction';
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from '../utility/modules';
 
 export default class Data extends FetchResponse {
-    constructor(client: AxiosInstance) {
-        super(client);
+    constructor(baseURL: string) {
+        super(baseURL);
     }
 
-    async decrypt(customID: string, privateKey: string, receiptPub: string | null = null): Promise<any> {
+    decrypt(customID: string, privateKey: string, receiptPub: string | null = null): Promise<any> {
         return this.postResponse("/decrypt", {
             'customID': customID,
             'privateKey': privateKey,
@@ -15,14 +14,14 @@ export default class Data extends FetchResponse {
         });
     }
 
-    async listData(limit: number, skip: number = 0): Promise<any> {
+    listData(limit: number, skip: number = 0): Promise<any> {
         return this.postResponse("/listData", {
             "limit": limit,
             "skip": skip
         });
     }
 
-    async listDataByAddress(address: string, limit: number, skip: number = 0): Promise<any> {
+    listDataByAddress(address: string, limit: number, skip: number = 0): Promise<any> {
         return this.postResponse("/listDataByAddress", {
             "address": address,
             "limit": limit,
@@ -30,7 +29,7 @@ export default class Data extends FetchResponse {
         });
     }
 
-    async listDataByAddresses(from: string, to: string, limit: number, skip: number = 0): Promise<any> {
+    listDataByAddresses(from: string, to: string, limit: number, skip: number = 0): Promise<any> {
         return this.postResponse("/listDataByAddresses", {
             "from": from,
             "to": to,
@@ -39,7 +38,7 @@ export default class Data extends FetchResponse {
         });
     }
 
-    async pushData(address: string, privateKey: string, to: string, indPubKey: string, key: string, value: string, enc: number): Promise<any> {
+    pushData(address: string, privateKey: string, to: string, indPubKey: string, key: string, value: string, enc: number): Promise<any> {
         return this.postResponse("/pushData", {
             "address": address,
             "privateKey": privateKey,
@@ -49,7 +48,7 @@ export default class Data extends FetchResponse {
         });
     }
 
-    async pushDataList(address: string, privateKey: string, to: string, customData: any[], indPubKey: string | null = null): Promise<any> {
+    pushDataList(address: string, privateKey: string, to: string, customData: any[], indPubKey: string | null = null): Promise<any> {
         return this.postResponse("/pushData", {
             "address": address,
             "privateKey": privateKey,
@@ -59,7 +58,7 @@ export default class Data extends FetchResponse {
         });
     }
 
-    async pushDataListV1(address: string, privateKey: string, to: string, customData: any[]): Promise<any> {
+    pushDataListV1(address: string, privateKey: string, to: string, customData: any[]): Promise<any> {
         return this.postResponse("/pushData", {
             "address": address,
             "privateKey": privateKey,
@@ -68,14 +67,14 @@ export default class Data extends FetchResponse {
         });
     }
 
-    async pushDataRawTransaction(address: string, privateKey: string, to: string | null, customData: any[], receiverPubKey: string | null = null, amount: number = 0): Promise<any> {
+    pushDataRawTransaction(address: string, privateKey: string, to: string | null, customData: any[], receiverPubKey: string | null = null, amount: number = 0): Promise<any> {
         return this.postResponse(
             "/pushDataRawTransaction",
             pushDataRawTransaction(address, privateKey, to, customData, receiverPubKey, amount)
         );
     }
 
-    async getPubKey(address: string): Promise<any> {
+    getPubKey(address: string): Promise<any> {
         return this.postResponse("/getPubKey", {
             "address": address
         });

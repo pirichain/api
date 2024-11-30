@@ -1,19 +1,18 @@
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from '../utility/modules';
 
 export default class Delegation extends FetchResponse {
 
-    constructor(client: AxiosInstance) {
-        super(client)
+    constructor(baseURL: string) {
+        super(baseURL);
     }
 
-    async checkDeputy(address: string): Promise<any> {
+    checkDeputy(address: string): Promise<any> {
         return this.postResponse("/checkDeputy", {
             "address": address
         });
     }
 
-    async freezeCoin(delegationAddress: string, delegationPrivateKey: string, deputyAddress: string, amount: number): Promise<any> {
+    freezeCoin(delegationAddress: string, delegationPrivateKey: string, deputyAddress: string, amount: number): Promise<any> {
         return this.postResponse("/freezeCoin", {
             "delegationAddress": delegationAddress,
             "delegationPrivateKey": delegationPrivateKey,
@@ -22,7 +21,7 @@ export default class Delegation extends FetchResponse {
         });
     }
 
-    async joinAsDeputy(address: string, privateKey: string, alias: string | null = null, website: string | null = null): Promise<any> {
+    joinAsDeputy(address: string, privateKey: string, alias: string | null = null, website: string | null = null): Promise<any> {
         return this.postResponse("/joinAsDeputy", {
             "address": address,
             "privateKey": privateKey,
@@ -31,18 +30,18 @@ export default class Delegation extends FetchResponse {
         });
     }
 
-    async listDeputies(): Promise<any> {
+    listDeputies(): Promise<any> {
         return this.postResponse("/listDeputies");
     }
 
-    async listMyDelegation(delegationAddress: string, delegationPrivateKey: string): Promise<any> {
+    listMyDelegation(delegationAddress: string, delegationPrivateKey: string): Promise<any> {
         return this.postResponse("/listMyDelegation", {
             "delegationAddress": delegationAddress,
             "delegationPrivateKey": delegationPrivateKey
         });
     }
 
-    async unFreezeCoin(delegationAddress: string, delegationPrivateKey: string, nodeAddress: string, txHash: string): Promise<any> {
+    unFreezeCoin(delegationAddress: string, delegationPrivateKey: string, nodeAddress: string, txHash: string): Promise<any> {
         return this.postResponse("/unFreezeCoin", {
             "delegationAddress": delegationAddress,
             "delegationPrivateKey": delegationPrivateKey,
@@ -51,31 +50,31 @@ export default class Delegation extends FetchResponse {
         });
     }
 
-    async listDelegationTopN(): Promise<any> {
+    listDelegationTopN(): Promise<any> {
         return this.postResponse("/listDelegationTopN");
     }
 
-    async getMyRewardQuantity(base58: string, privateKey: string): Promise<any> {
+    getMyRewardQuantity(base58: string, privateKey: string): Promise<any> {
         return this.postResponse("/getMyRewardQuantity", {
             "base58": base58,
             "privateKey": privateKey
         });
     }
 
-    async claimMyRewards(address: string, privateKey: string): Promise<any> {
+    claimMyRewards(address: string, privateKey: string): Promise<any> {
         return this.postResponse("/claimMyRewards", {
             "address": address,
             "privateKey": privateKey
         });
     }
 
-    async verifyAddress(address: string): Promise<any> {
+    verifyAddress(address: string): Promise<any> {
         return this.postResponse("/verifyAddress", {
             "address": address
         });
     }
 
-    async getDetailsOfAddress(address: string): Promise<any> {
+    getDetailsOfAddress(address: string): Promise<any> {
         return this.postResponse("/getDetailsOfAddress", {
             "address": address
         });

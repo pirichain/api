@@ -1,5 +1,10 @@
-import {ec, base58, bip39} from '../utility/modules';
 import {base58extracted} from "./utility";
+
+// @ts-ignore
+import base58 from "base58check";
+import * as bip39 from 'bip39';
+import pkg from "elliptic";
+const ec = new pkg.ec("secp256k1");
 
 export function createNewAddress(language: string) : {data: {pri: string, pub: string, words: string, publicKey: string}} {
     const key = ec.genKeyPair();

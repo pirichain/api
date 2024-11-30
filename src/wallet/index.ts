@@ -2,25 +2,23 @@ import {createNewAddress} from "./createNewAddress";
 import {rescuePrivateKey, RescuePrivateKeyResponse} from "./rescuePrivateKey";
 import {getMnemonic, MnemonicResponse} from "./getMnemonic";
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from '../utility/modules';
-
 
 
 export default class Wallet extends FetchResponse {
-    constructor(client: AxiosInstance) {
-        super(client);
+    constructor(baseURL: string) {
+        super(baseURL);
     }
 
     createNewAddress = (language: string = 'english') => createNewAddress(language);
 
-    async getBalance(address: string, assetID: number = -1): Promise<any> {
+    getBalance(address: string, assetID: number = -1): Promise<any> {
         return this.postResponse("/getBalance", {
             'address': address,
             'assetID': assetID
         });
     }
 
-    async getBalanceList(address: string): Promise<any> {
+    getBalanceList(address: string): Promise<any> {
         return this.postResponse("/getBalanceList", {
             "address": address
         });
@@ -30,7 +28,7 @@ export default class Wallet extends FetchResponse {
 
     rescuePrivateKey = (words: string, language: string = 'english'): RescuePrivateKeyResponse => rescuePrivateKey(words, language);
 
-    async convertToCommercialWallet(address: string, privateKey: string, alias: string): Promise<any> {
+    convertToCommercialWallet(address: string, privateKey: string, alias: string): Promise<any> {
         return this.postResponse('/convertToCommercialWallet', {
             'address': address,
             'privateKey': privateKey,

@@ -1,35 +1,51 @@
-import {AxiosInstance, AxiosRequestConfig} from "axios";
-
 export class FetchResponse {
-    private declare readonly client: AxiosInstance;
+    private readonly baseURL: string
 
-    constructor(client: AxiosInstance) {
-        this.client = client;
+    constructor(baseURL: string) {
+        this.baseURL = baseURL
     }
 
-    async getResponse(endpoint: string, config?: AxiosRequestConfig): Promise<any> {
+    async getResponse(endpoint: string, config?: RequestInit): Promise<any> {
         try {
-            const result = await this.client.get(endpoint, config);
+            const response = await fetch(`${this.baseURL}${endpoint}`, {method: "GET", ...config});
 
-            if (result.status === 200)
-                return result.data
+            if (response.ok) {
+                return await response.json();
+            }
 
-            return {error: 1, message: result.data}
-        } catch (error) {
-            return {error: 1, message: error.message}
+            return {error: 1, message: await response.text()};
+        } catch (error: any) {
+            return {error: 1, message: error.message};
         }
     }
 
-    async postResponse(endpoint: string, data?: any, config?: AxiosRequestConfig): Promise<any> {
+    async postResponse(endpoint: string, data?: any, config?: RequestInit): Promise<any> {
         try {
-            const result = await this.client.post(endpoint, data, config);
+            const _config = {
+                method: "POST",
+                body: data ? JSON.stringify(data) : "",
+                headers: config?.headers || {
+                    "Content-Type": "application/json"
+                },
+                ...config,
+            }
+            const response = await fetch(`${this.baseURL}${endpoint}`, _config);
 
-            if (result.status === 200)
-                return result.data
+            if (response.ok) {
+                return await response.json();
+            }
 
-            return {error: 1, type: {status: result.status, statusText: result.statusText}, message: result.data}
-        } catch (error) {
-            return {error: 1, type: {status: 0, statusText: "exception"}, message: error.message}
+            return {
+                error: 1,
+                type: {status: response.status, statusText: response.statusText},
+                message: await response.text(),
+            };
+        } catch (error: any) {
+            return {
+                error: 1,
+                type: {status: 0, statusText: "exception"},
+                message: error.message,
+            };
         }
     }
 }

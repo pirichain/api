@@ -1,15 +1,13 @@
-import FormData from 'form-data';
 import {sendRawTransaction} from './sendRawTransaction';
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from '../utility/modules';
 
 
 export default class Token extends FetchResponse {
-    constructor(client: AxiosInstance) {
-        super(client);
+    constructor(baseURL: string) {
+        super(baseURL);
     }
 
-    async createToken(
+    createToken(
         creatorAddress: string,
         privateKey: string,
         tokenName: string,
@@ -62,20 +60,20 @@ export default class Token extends FetchResponse {
         });
     }
 
-    async getToken(assetID: number): Promise<any> {
+    getToken(assetID: number): Promise<any> {
         return this.postResponse("/getToken", {
             "assetID": assetID
         });
     }
 
-    async listTokens(skip: number = 0, limit: number = 10): Promise<any> {
+    listTokens(skip: number = 0, limit: number = 10): Promise<any> {
         return this.postResponse("/listTokens", {
             "skip": skip,
             "limit": limit
         });
     }
 
-    async sendToken(address: string, privateKey: string, to: string, amount: number, assetID: number): Promise<any> {
+    sendToken(address: string, privateKey: string, to: string, amount: number, assetID: number): Promise<any> {
         return this.postResponse("/sendToken", {
             "address": address,
             "privateKey": privateKey,
@@ -102,13 +100,13 @@ export default class Token extends FetchResponse {
         return this.postResponse("/sendRawTransaction", sendRawTransaction(address, privateKey, to, amount, estimatedFee_, assetID));
     }
 
-    async givemePiri(address: string): Promise<any> {
+    givemePiri(address: string): Promise<any> {
         return this.postResponse("/givemePiri", {
             "address": address
         });
     }
 
-    async getEstimatedFee(): Promise<any> {
+    getEstimatedFee(): Promise<any> {
         return this.postResponse("/getEstimatedFee");
     }
 }

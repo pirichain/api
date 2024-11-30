@@ -1,12 +1,12 @@
-import Wallet from "./wallet";
-import Token from "./token";
-import Transaction from "./transaction";
-import Block from "./block";
-import Data from "./data";
-import Utility from "./utility";
-import Delegation from "./delegation";
-import Stats from "./stats";
-import Scenario from "./scenario";
+import Wallet from "./src/wallet";
+import Token from "./src/token";
+import Transaction from "./src/transaction";
+import Block from "./src/block";
+import Data from "./src/data";
+import Utility from "./src/utility";
+import Delegation from "./src/delegation";
+import Stats from "./src/stats";
+import Scenario from "./src/scenario";
 interface IPirichainAPI {
     Wallet: Wallet;
     Token: Token;
@@ -18,7 +18,7 @@ interface IPirichainAPI {
     Stats: Stats;
     Scenario: Scenario;
 }
-declare class PirichainAPI implements IPirichainAPI {
+export declare class PirichainAPI implements IPirichainAPI {
     readonly Wallet: Wallet;
     readonly Token: Token;
     readonly Transaction: Transaction;
@@ -32,5 +32,5 @@ declare class PirichainAPI implements IPirichainAPI {
         serverURL: string;
     });
 }
-export { PirichainAPI };
 export default PirichainAPI;
+//# sourceMappingURL=index.d.ts.map

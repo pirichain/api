@@ -1,19 +1,18 @@
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from '../utility/modules';
 
 
 export default class Scenario extends FetchResponse {
-    constructor(client: AxiosInstance) {
-        super(client);
+    constructor(baseURL: string) {
+        super(baseURL);
     }
 
-    async getScenario(address: string): Promise<any> {
+    getScenario(address: string): Promise<any> {
         return this.postResponse("/getScenario", {
             "address": address
         });
     }
 
-    async createScenario(
+    createScenario(
         address: string,
         privateKey: string,
         scenarioText: string,
@@ -33,7 +32,7 @@ export default class Scenario extends FetchResponse {
         });
     }
 
-    async editScenario(
+    editScenario(
         address: string,
         privateKey: string,
         scenarioText: string,
@@ -47,20 +46,20 @@ export default class Scenario extends FetchResponse {
         });
     }
 
-    async listMyScenarios(ownerAddress: string): Promise<any> {
+    listMyScenarios(ownerAddress: string): Promise<any> {
         return this.postResponse("/listMyScenarios", {
             "ownerAddress": ownerAddress
         });
     }
 
-    async listScenarios(skip: number = 0, limit: number = 10): Promise<any> {
+    listScenarios(skip: number = 0, limit: number = 10): Promise<any> {
         return this.postResponse("/listScenarios", {
             "skip": skip,
             "limit": limit
         });
     }
 
-    async executeScenario(
+    executeScenario(
         scenarioAddress: string,
         address: string,
         privateKey: string,
@@ -80,7 +79,7 @@ export default class Scenario extends FetchResponse {
         });
     }
 
-    async callScenario(
+    callScenario(
         scenarioAddress: string,
         address: string,
         publicKey: string,
@@ -96,7 +95,7 @@ export default class Scenario extends FetchResponse {
         })
     }
 
-    async previewScenario(
+    previewScenario(
         scenarioText: string,
         address: string,
         privateKey: string,

@@ -1,4 +1,6 @@
-import {ec, sha256} from '../utility/modules';
+import sha from 'sha256';
+import pkg from "elliptic";
+const ec = new pkg.ec("secp256k1");
 
 function toHexString(byteArray: Uint8Array): string {
     return Array.from(byteArray, byte => ('0' + (byte & 0xFF).toString(16)).slice(-2)).join('');
@@ -36,14 +38,14 @@ function prepareSendTokenWithSignature(
     return JSON.stringify(data);
 }
 
-export async function sendRawTransaction(
+export function sendRawTransaction(
     address: string,
     privateKey: string,
     to: string,
     amount: number,
     estimatedFee: number,
     assetID: number = -1
-): Promise<any> {
+) {
     const timeStamp = Date.now();
     const message_ = prepareSendTokenWithSignature(
         address,
@@ -55,7 +57,7 @@ export async function sendRawTransaction(
     );
     const key = ec.keyFromPrivate(privateKey);
     const publicKey = key.getPublic().encode('hex', false);
-    const message = sha256(message_);
+    const message = sha(message_);
 
     const resultSign = key.sign(message).toDER();
     const signatureData = toHexString(new Uint8Array(resultSign));

@@ -1,30 +1,29 @@
 import {FetchResponse} from "../config/response";
-import {AxiosInstance} from '../utility/modules';
 
 
 export default class Transaction extends FetchResponse {
-    constructor(client: AxiosInstance) {
-        super(client);
+    constructor(baseURL: string) {
+        super(baseURL);
     }
 
-    async getTransaction(tx: string) {
+    getTransaction(tx: string) {
         return this.postResponse("/getTransaction", {
             "tx": tx
         });
     }
 
-    async listPoolTransactions() {
+    listPoolTransactions() {
         return this.postResponse("/listPoolTransactions");
     }
 
-    async listTransactions(skip: number = 0, limit: number = 50) {
+    listTransactions(skip: number = 0, limit: number = 50) {
         return this.postResponse("/listTransactions", {
             "skip": skip,
             "limit": limit
         });
     }
 
-    async listTransactionsByAddr(skip: number, limit: number, address: string) {
+    listTransactionsByAddr(skip: number, limit: number, address: string) {
         return this.postResponse("/listTransactionsByAddr", {
             "skip": skip,
             "limit": limit || 50,
@@ -32,7 +31,7 @@ export default class Transaction extends FetchResponse {
         });
     }
 
-    async listTransactionsByAssetID(skip: number, limit: number, assetID: number, desc: boolean = false) {
+    listTransactionsByAssetID(skip: number, limit: number, assetID: number, desc: boolean = false) {
         return this.postResponse("/listTransactionsByAssetID", {
             "skip": skip,
             "limit": limit,
@@ -41,7 +40,7 @@ export default class Transaction extends FetchResponse {
         });
     }
 
-    async getPoolTransaction(tx: string) {
+    getPoolTransaction(tx: string) {
         return this.postResponse("/getPoolTransaction", {
             "tx": tx
         });

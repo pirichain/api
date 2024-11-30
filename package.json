@@ -1,11 +1,12 @@
 {
   "name": "@pirichain/core",
-  "version": "3.3.19",
+  "version": "3.5.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "@pirichain/base58check": "^1.1.1",
-    "axios": "^1.7.7",
     "base58check": "^2.0.0",
     "bip39": "^3.1.0",
     "bs58check": "^4.0.0",
@@ -17,7 +18,8 @@
   },
   "directories": {},
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "pirichain",
@@ -56,6 +58,7 @@
     "@types/node": "^22.8.5",
     "@types/ripemd160": "^2.0.2",
     "@types/sha256": "^0.2.2",
+    "tsup": "^8.3.5",
     "typescript": "^5.6.3"
   }
 }

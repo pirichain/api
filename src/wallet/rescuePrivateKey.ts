@@ -1,6 +1,7 @@
-import {sanitize, bip39} from '../utility/modules'
-import {createNewAddress} from "./createNewAddress";
-import {getPubKeyFromPrivate, convertToBase58} from "./utility";
+import sanitize from "mongo-sanitize";
+import * as bip39 from "bip39";
+import { createNewAddress } from "./createNewAddress";
+import { getPubKeyFromPrivate, convertToBase58 } from "./utility";
 
 export interface RescuePrivateKeyResponse {
     data: {

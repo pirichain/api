@@ -1,0 +1,1 @@
+{"version":3,"file":"getMnemonic.d.ts","sourceRoot":"","sources":["../../../src/wallet/getMnemonic.ts"],"names":[],"mappings":"AAGA,MAAM,WAAW,gBAAgB;IAC7B,IAAI,EAAE;QACF,KAAK,EAAE,MAAM,CAAC;QACd,OAAO,CAAC,EAAE,MAAM,CAAC;QACjB,QAAQ,CAAC,EAAE,MAAM,CAAC;KACrB,CAAC;CACL;AAED,wBAAgB,WAAW,CAAC,UAAU,EAAE,MAAM,EAAE,QAAQ,GAAE,MAAkB,GAAG,gBAAgB,CAuB9F"}

@@ -1,4 +1,10 @@
-import {ec, sha256, base58, RIPEMD160} from '../utility/modules'
+// @ts-ignore
+import base58 from "base58check";
+import sha256 from "sha256";
+import RIPEMD160 from "ripemd160";
+
+import pkg from "elliptic";
+const ec = new pkg.ec("secp256k1");
 
 export function getPubKeyFromPrivate(pri: string): string | undefined {
     try {

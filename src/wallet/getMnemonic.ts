@@ -1,4 +1,5 @@
-import {bip39, sanitize} from '../utility/modules'
+import * as bip39 from 'bip39';
+import sanitize from 'mongo-sanitize';
 
 export interface MnemonicResponse {
     data: {
