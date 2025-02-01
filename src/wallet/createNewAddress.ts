@@ -6,7 +6,7 @@ import * as bip39 from 'bip39';
 import pkg from "elliptic";
 const ec = new pkg.ec("secp256k1");
 
-export function createNewAddress(language: string) : {data: {pri: string, pub: string, words: string, publicKey: string}} {
+export function createNewAddress(language: string, chainPrefix?: string) : {data: {pri: string, pub: string, words: string, publicKey: string}} {
     const key = ec.genKeyPair();
     const prefix = '83';
     let publicKey = key.getPublic('hex');
@@ -16,5 +16,5 @@ export function createNewAddress(language: string) : {data: {pri: string, pub: s
     const b58 = base58.encode(resultStr, prefix);
     bip39.setDefaultWordlist(language);
     const words = bip39.entropyToMnemonic(privateKey);
-    return {data: {pri: privateKey, pub: 'PR' + b58, words: words, publicKey: _publicKey}};
+    return {data: {pri: privateKey, pub: (chainPrefix ?? 'PR') + b58, words: words, publicKey: _publicKey}};
 }

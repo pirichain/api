@@ -33,7 +33,7 @@ const base58check_1 = __importDefault(require("base58check"));
 const bip39 = __importStar(require("bip39"));
 const elliptic_1 = __importDefault(require("elliptic"));
 const ec = new elliptic_1.default.ec("secp256k1");
-function createNewAddress(language) {
+function createNewAddress(language, chainPrefix) {
     const key = ec.genKeyPair();
     const prefix = '83';
     let publicKey = key.getPublic('hex');
@@ -43,6 +43,6 @@ function createNewAddress(language) {
     const b58 = base58check_1.default.encode(resultStr, prefix);
     bip39.setDefaultWordlist(language);
     const words = bip39.entropyToMnemonic(privateKey);
-    return { data: { pri: privateKey, pub: 'PR' + b58, words: words, publicKey: _publicKey } };
+    return { data: { pri: privateKey, pub: (chainPrefix !== null && chainPrefix !== void 0 ? chainPrefix : 'PR') + b58, words: words, publicKey: _publicKey } };
 }
 //# sourceMappingURL=createNewAddress.js.map

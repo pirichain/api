@@ -1,4 +1,4 @@
-export declare function createNewAddress(language: string): {
+export declare function createNewAddress(language: string, chainPrefix?: string): {
     data: {
         pri: string;
         pub: string;
