@@ -3,7 +3,7 @@ import { MnemonicResponse } from "./getMnemonic";
 import { FetchResponse } from "../config/response";
 export default class Wallet extends FetchResponse {
     constructor(baseURL: string);
-    createNewAddress: (language?: string) => {
+    createNewAddress: (language?: string, chainPrefix?: string) => {
         data: {
             pri: string;
             pub: string;

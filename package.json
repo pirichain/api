@@ -1,6 +1,6 @@
 {
   "name": "@pirichain/core",
-  "version": "3.5.6",
+  "version": "3.5.7",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

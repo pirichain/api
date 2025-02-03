@@ -40,7 +40,9 @@ class FetchResponse {
                         return yield response.json();
                     }
                     catch (_a) {
-                        return null;
+                        const text = yield response.formData();
+                        console.error(text);
+                        return text;
                     }
                 }
                 return {

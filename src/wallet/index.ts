@@ -9,7 +9,7 @@ export default class Wallet extends FetchResponse {
         super(baseURL);
     }
 
-    createNewAddress = (language: string = 'english') => createNewAddress(language);
+    createNewAddress = (language: string = 'english', chainPrefix?: string) => createNewAddress(language, chainPrefix);
 
     getBalance(address: string, assetID: number = -1): Promise<any> {
         return this.postResponse("/getBalance", {

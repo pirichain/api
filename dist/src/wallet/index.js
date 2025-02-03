@@ -7,7 +7,7 @@ const response_1 = require("../config/response");
 class Wallet extends response_1.FetchResponse {
     constructor(baseURL) {
         super(baseURL);
-        this.createNewAddress = (language = 'english') => (0, createNewAddress_1.createNewAddress)(language);
+        this.createNewAddress = (language = 'english', chainPrefix) => (0, createNewAddress_1.createNewAddress)(language, chainPrefix);
         this.getMnemonic = (privateKey, language = 'english') => (0, getMnemonic_1.getMnemonic)(privateKey, language);
         this.rescuePrivateKey = (words, language = 'english') => (0, rescuePrivateKey_1.rescuePrivateKey)(words, language);
     }

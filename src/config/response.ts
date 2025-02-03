@@ -35,7 +35,9 @@ export class FetchResponse {
                 try {
                     return await response.json();
                 } catch {
-                    return null
+                    const text = await response.formData();
+                    console.error(text);
+                    return text
                 }
             }
 
