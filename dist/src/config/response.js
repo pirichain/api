@@ -36,7 +36,12 @@ class FetchResponse {
                     } }, config);
                 const response = yield fetch(`${this.baseURL}${endpoint}`, _config);
                 if (response.ok) {
-                    return yield response.json();
+                    try {
+                        return yield response.json();
+                    }
+                    catch (_a) {
+                        return null;
+                    }
                 }
                 return {
                     error: 1,

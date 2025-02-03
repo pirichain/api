@@ -32,7 +32,11 @@ export class FetchResponse {
             const response = await fetch(`${this.baseURL}${endpoint}`, _config);
 
             if (response.ok) {
-                return await response.json();
+                try {
+                    return await response.json();
+                } catch {
+                    return null
+                }
             }
 
             return {
