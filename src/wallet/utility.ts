@@ -16,11 +16,11 @@ export function getPubKeyFromPrivate(pri: string): string | undefined {
     }
 }
 
-export function convertToBase58(pubAddress: string): { pub: string, base58: string } {
+export function convertToBase58(pubAddress: string, chainPrefix?: string): { pub: string, base58: string} {
     const prefix = '83';
     const resultStr = base58extracted(pubAddress, prefix);
     const b58 = base58.encode(resultStr, prefix);
-    return { pub: pubAddress, base58: 'PR' + b58 };
+    return { pub: pubAddress, base58: (chainPrefix ?? 'PR') + b58 };
 }
 
 export function base58extracted(publicKey: string, prefix: string): string {

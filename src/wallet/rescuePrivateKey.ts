@@ -13,7 +13,7 @@ export interface RescuePrivateKeyResponse {
     };
 }
 
-export function rescuePrivateKey(words: string, language: string = 'english'): RescuePrivateKeyResponse {
+export function rescuePrivateKey(words: string, language: string = 'english', chainPrefix?: string): RescuePrivateKeyResponse {
     if (language) {
         try {
             language = sanitize(language);
@@ -38,10 +38,10 @@ export function rescuePrivateKey(words: string, language: string = 'english'): R
         if (!pubKey) {
             throw new Error('Public key generation failed');
         }
-        let base58 = convertToBase58(pubKey);
+        let base58 = convertToBase58(pubKey, chainPrefix);
         return {data: {pri: pri, base58: base58}};
     } catch (e) {
-        const result = createNewAddress(language);
+        const result = createNewAddress(language, chainPrefix);
         return {data: {pri: result.data.pri, pub: result.data.pub}};
     }
 }

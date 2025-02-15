@@ -26,7 +26,7 @@ export default class Wallet extends FetchResponse {
 
     getMnemonic = (privateKey: string, language: string = 'english'): MnemonicResponse => getMnemonic(privateKey, language);
 
-    rescuePrivateKey = (words: string, language: string = 'english'): RescuePrivateKeyResponse => rescuePrivateKey(words, language);
+    rescuePrivateKey = (words: string, language: string = 'english', chainPrefix: string): RescuePrivateKeyResponse => rescuePrivateKey(words, language, chainPrefix);
 
     convertToCommercialWallet(address: string, privateKey: string, alias: string): Promise<any> {
         return this.postResponse('/convertToCommercialWallet', {
