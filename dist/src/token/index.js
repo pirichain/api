@@ -67,7 +67,7 @@ class Token extends response_1.FetchResponse {
     sendRawTransaction(address_1, privateKey_1, to_1, amount_1) {
         return __awaiter(this, arguments, void 0, function* (address, privateKey, to, amount, assetID = -1, estimatedFee = 1) {
             let estimatedFee_ = estimatedFee;
-            const getEstimatedFeePromise = this.getEstimatedFee().then(({ data }) => {
+            const getEstimatedFeePromise = this.getEstimatedFee().then((data) => {
                 if (!data.error) {
                     if (parseFloat(data.estimatedBandWidthFee) > estimatedFee)
                         estimatedFee_ = parseFloat(data.estimatedBandWidthFee);

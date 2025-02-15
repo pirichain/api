@@ -22,11 +22,11 @@ function getPubKeyFromPrivate(pri) {
         console.log(e);
     }
 }
-function convertToBase58(pubAddress) {
+function convertToBase58(pubAddress, chainPrefix) {
     const prefix = '83';
     const resultStr = base58extracted(pubAddress, prefix);
     const b58 = base58check_1.default.encode(resultStr, prefix);
-    return { pub: pubAddress, base58: 'PR' + b58 };
+    return { pub: pubAddress, base58: (chainPrefix !== null && chainPrefix !== void 0 ? chainPrefix : 'PR') + b58 };
 }
 function base58extracted(publicKey, prefix) {
     publicKey = sha256_1.default.x2(publicKey);

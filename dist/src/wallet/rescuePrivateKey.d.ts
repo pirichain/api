@@ -10,5 +10,5 @@ export interface RescuePrivateKeyResponse {
         pub?: string;
     };
 }
-export declare function rescuePrivateKey(words: string, language?: string): RescuePrivateKeyResponse;
+export declare function rescuePrivateKey(words: string, language?: string, chainPrefix?: string): RescuePrivateKeyResponse;
 //# sourceMappingURL=rescuePrivateKey.d.ts.map

@@ -86,7 +86,7 @@ export default class Token extends FetchResponse {
     async sendRawTransaction(address: string, privateKey: string, to: string, amount: number, assetID: number = -1, estimatedFee: number = 1): Promise<any> {
         let estimatedFee_ = estimatedFee;
 
-        const getEstimatedFeePromise = this.getEstimatedFee().then(({data}) => {
+        const getEstimatedFeePromise = this.getEstimatedFee().then((data) => {
             if (!data.error) {
                 if (parseFloat(data.estimatedBandWidthFee) > estimatedFee)
                     estimatedFee_ = parseFloat(data.estimatedBandWidthFee);

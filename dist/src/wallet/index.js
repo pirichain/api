@@ -9,7 +9,7 @@ class Wallet extends response_1.FetchResponse {
         super(baseURL);
         this.createNewAddress = (language = 'english', chainPrefix) => (0, createNewAddress_1.createNewAddress)(language, chainPrefix);
         this.getMnemonic = (privateKey, language = 'english') => (0, getMnemonic_1.getMnemonic)(privateKey, language);
-        this.rescuePrivateKey = (words, language = 'english') => (0, rescuePrivateKey_1.rescuePrivateKey)(words, language);
+        this.rescuePrivateKey = (words, language = 'english', chainPrefix) => (0, rescuePrivateKey_1.rescuePrivateKey)(words, language, chainPrefix);
     }
     getBalance(address, assetID = -1) {
         return this.postResponse("/getBalance", {

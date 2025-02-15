@@ -41,7 +41,7 @@ const mongo_sanitize_1 = __importDefault(require("mongo-sanitize"));
 const bip39 = __importStar(require("bip39"));
 const createNewAddress_1 = require("./createNewAddress");
 const utility_1 = require("./utility");
-function rescuePrivateKey(words, language = 'english') {
+function rescuePrivateKey(words, language = 'english', chainPrefix) {
     if (language) {
         try {
             language = (0, mongo_sanitize_1.default)(language);
@@ -67,11 +67,11 @@ function rescuePrivateKey(words, language = 'english') {
         if (!pubKey) {
             throw new Error('Public key generation failed');
         }
-        let base58 = (0, utility_1.convertToBase58)(pubKey);
+        let base58 = (0, utility_1.convertToBase58)(pubKey, chainPrefix);
         return { data: { pri: pri, base58: base58 } };
     }
     catch (e) {
-        const result = (0, createNewAddress_1.createNewAddress)(language);
+        const result = (0, createNewAddress_1.createNewAddress)(language, chainPrefix);
         return { data: { pri: result.data.pri, pub: result.data.pub } };
     }
 }

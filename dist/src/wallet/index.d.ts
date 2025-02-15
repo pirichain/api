@@ -14,7 +14,7 @@ export default class Wallet extends FetchResponse {
     getBalance(address: string, assetID?: number): Promise<any>;
     getBalanceList(address: string): Promise<any>;
     getMnemonic: (privateKey: string, language?: string) => MnemonicResponse;
-    rescuePrivateKey: (words: string, language?: string) => RescuePrivateKeyResponse;
+    rescuePrivateKey: (words: string, language: string | undefined, chainPrefix: string) => RescuePrivateKeyResponse;
     convertToCommercialWallet(address: string, privateKey: string, alias: string): Promise<any>;
 }
 //# sourceMappingURL=index.d.ts.map
